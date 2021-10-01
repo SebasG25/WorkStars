@@ -6,7 +6,7 @@ export default class Navigation extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link className="navbar-brand ms-auto" to="/">
-                    NotesApp
+                    WorkStars
                 </Link>
                 <div className="container">
                     <button className="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,13 +15,7 @@ export default class Navigation extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Notes</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/create">Create Note</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/user">Create User</Link>
+                                <Link className="nav-link active" aria-current="page" to="/">Sign in</Link>
                             </li>
                         </ul>
                     </div>
