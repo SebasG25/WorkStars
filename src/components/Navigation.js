@@ -1,26 +1,39 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap'
 
 export default class Navigation extends Component {
+
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link className="navbar-brand ms-auto" to="/">
-                    WorkStars
-                </Link>
-                <div className="container">
-                    <button className="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Sign in</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <Navbar bg="dark" variant="dark">
+                <Container fluid className="px-5">
+                    <LinkContainer to="/signin">
+                        <Navbar.Brand>
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/1200px-React.svg.png"
+                                width="30"
+                                height="30"
+                                className="d-inline-block align-top"
+                                alt="React logo"
+                            />
+                            {` `} WorkStars
+                        </Navbar.Brand>
+
+                    </LinkContainer>
+                    <Nav variant="pills">
+                        <LinkContainer to="/signin">
+                            <Nav.Link>Sign In</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/signup">
+                            <Nav.Link>Sign Up</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/aboutus">
+                            <Nav.Link>About Us</Nav.Link>
+                        </LinkContainer>
+                    </Nav>
+                </Container>
+            </Navbar>
         )
     }
 }

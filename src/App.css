@@ -1,0 +1,15 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+svg {
+    position: absolute;
+    bottom: 0;
+    z-index:-1;
+}
