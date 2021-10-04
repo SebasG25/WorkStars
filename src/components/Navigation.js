@@ -4,7 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 export default class Navigation extends Component {
 
-    render() {
+    render(){
+        
         return (
             <Navbar bg="dark" variant="dark">
                 <Container fluid className="px-5">
