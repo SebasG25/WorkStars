@@ -1,40 +1,40 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
+import { Navbar, Nav, Container, NavDropdown, } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'
+import routes from '../helpers/routes';
+import useAuth from '../auth/useAuth'
 
-export default class Navigation extends Component {
+export default function Navigation() {
 
-    render(){
-        
-        return (
-            <Navbar bg="dark" variant="dark">
-                <Container fluid className="px-5">
-                    <LinkContainer to="/signin">
-                        <Navbar.Brand>
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/1200px-React.svg.png"
-                                width="30"
-                                height="30"
-                                className="d-inline-block align-top"
-                                alt="React logo"
-                            />
-                            {` `} WorkStars
-                        </Navbar.Brand>
+    const { logout } = useAuth();
 
-                    </LinkContainer>
-                    <Nav variant="pills">
-                        <LinkContainer to="/signin">
-                            <Nav.Link>Sign In</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/signup">
-                            <Nav.Link>Sign Up</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/aboutus">
-                            <Nav.Link>About Us</Nav.Link>
-                        </LinkContainer>
+    return (
+        <Navbar collapseOnSelect expand="lg" variant="dark" bg="dark">
+            <Container fluid>
+                <Navbar.Brand as={NavLink} to={routes.home}>WorkStars</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav"></Navbar.Toggle>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto" variant="pills">
+                        <NavDropdown title="Admin">
+                            <NavDropdown.Item as={NavLink} to={routes.admin.users}>
+                                Usuarios
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to={routes.admin.projects}>
+                                Proyectos
+                            </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
-                </Container>
-            </Navbar>
-        )
-    }
+                    <Nav variant="pills">
+                        <Nav.Link as={NavLink} to={routes.signin}>
+                            Iniciar Sesión
+                        </Nav.Link>
+                        <Nav.Link as={NavLink} to={routes.signup}>Registrarse</Nav.Link>
+                        <Nav.Link as={NavLink} to={routes.account}>Mi cuenta</Nav.Link>
+                        <Nav.Link to={routes.account} onClick={logout}>Cerrar Sesión</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+
+    )
 }
