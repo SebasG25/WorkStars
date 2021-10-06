@@ -1,11 +1,4 @@
 # WorkStars :smile:
-## Introducción:
-
-WorkStars es **una aplicación web** social la cual tiene como objetivo tumbar la idea de que el ambiente de trabajo debe ser hostil para mantener la competitividad y el rendimiento, proponiendo un nuevo ritmo en el cual los trabajadores se sientan impulsados no por miedo, sino por un compañerismo sano y el bien general del equipo, normalizando apreciar el trabajo de los demás y sentir orgullo por el trabajo propio bien hecho.
-
-## Colaboradores
-
-# WorkStars :smile:
 
 ## Introducción:
 
