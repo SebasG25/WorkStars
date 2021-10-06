@@ -23,13 +23,13 @@ WorkStars es **una aplicación web** social la cual tiene como objetivo tumbar l
         </div>
         <div>
             <h2 style="text-align: center;">
-                <a href="https://github.com/federico29mg" target="_blank"><img style="height:auto; border-radius:60%;" alt="Dianella" width="180" class="avatar avatar-user width-full border color-bg-primary" src="https://avatars.githubusercontent.com/u/65299467?v=4"></a>
+                <a href="https://github.com/federico29mg" target="_blank"><img style="height:auto; border-radius:60%;" alt="Federico" width="180" class="avatar avatar-user width-full border color-bg-primary" src="https://avatars.githubusercontent.com/u/65299467?v=4"></a>
                 Federico
             </h2>
         </div>
         <div>
             <h2 style="text-align: center;">
-                <a href="https://github.com/SebasG25" target="_blank"><img style="height:auto; border-radius:60%;" alt="Dianella" width="180" class="avatar avatar-user width-full border color-bg-primary" src="https://avatars.githubusercontent. com/u/53189683?v=4"></a>
+                <a href="https://github.com/SebasG25" target="_blank"><img style="height:auto; border-radius:60%;" alt="Sebastian" width="180" class="avatar avatar-user width-full border color-bg-primary" src="https://avatars.githubusercontent.com/u/53189683?v=4"></a>
                 Sebastian
             </h2>
         </div>
