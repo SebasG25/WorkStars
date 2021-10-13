@@ -24,51 +24,29 @@
   ],
   "projects": [
     {
-      "id": 1,
-      "name": "project 1",
       "collaborators": [
-        {
-          "email": "admin@gmail.com",
-          "role": "admin",
-          "name": "Sebastian",
-          "password": "123",
-          "id": 1
-        },
-        {
-          "email": "federico29.mg@gmail.com",
-          "role": "regular",
-          "name": "Federico",
-          "password": "123",
-          "id": 2
-        },
-        {
-          "email": "chzdiane@gmail.com",
-          "role": "regular",
-          "name": "Dianella",
-          "password": "123",
-          "id": 3
-        }
-      ]
+        1,
+        2,
+        3
+      ],
+      "name": "project 1",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "project 2",
       "collaborators": [
-        {
-          "email": "admin@gmail.com",
-          "role": "admin",
-          "name": "Sebastian",
-          "password": "123",
-          "id": 1
-        },
-        {
-          "email": "federico29.mg@gmail.com",
-          "role": "regular",
-          "name": "Federico",
-          "password": "123",
-          "id": 2
-        }
-      ]
+        1,
+        2
+      ],
+      "name": "project 2",
+      "id": 2
+    },
+    {
+      "collaborators": [
+        2,
+        3
+      ],
+      "name": "Proyecto Prueba",
+      "id": 3
     }
   ]
 }

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const projectData = {}
+const projectData = {
+    collaborators: []
+}
+
 
 export default function CreateProject() {
 
     const [data, setData] = useState([])
+
+    const [userSelected, setUserSelected] = useState({})
 
     const getData = async () => {
         const res = await axios.get('http://localhost:3001/users')
@@ -19,6 +24,24 @@ export default function CreateProject() {
 
     const nameOnChangeHandler = (e) => {
         projectData[e.target.name] = e.target.value
+        console.log(projectData)
+    }
+
+    const addCollaboratorHandler = (e) => {
+        e.preventDefault()
+        projectData.collaborators.push(userSelected)
+        console.log(projectData.collaborators)
+    }
+
+    const onSelectChangeHandler = (e) => {
+        setUserSelected(e.target.value)
+        console.log(userSelected)
+    }
+
+    const createProject = async (e) => {
+        e.preventDefault()
+        await axios.post('http://localhost:3001/projects', projectData)
+        alert('Creado exitosamente')
     }
 
 
@@ -42,23 +65,21 @@ export default function CreateProject() {
                                 <div className="form-row py-2">
                                     <div className="offset-1 col-lg-10 input-group-lg">
 
-                                        <select className="inp px-2" id="inputGroupSelect01">
+                                        <select className="inp px-2" id="inputGroupSelect01" onChange={(e) => onSelectChangeHandler(e)}>
                                             <option hidden selected>Choose a collaborator</option>
                                             {
-                                                data.map(user =>
-                                                    <option key={user.id} value={user.id}>{user.name}</option>
-                                                )
+                                                data.map(user => <option key={user.id} value={user.id}> {user.name}</option>)
                                             }
                                         </select>
                                         <div class="col-auto my-2">
-                                            <button class="btn btn-primary mb-3">Add collaborator</button>
+                                            <button class="btn btn-primary mb-3" onClick={(e) => addCollaboratorHandler(e)}>Add collaborator</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="form-row pt-4">
                                     <div className="offset-1 col-lg-10 py-1">
-                                        <button className="btn1">Sign Up</button>
+                                        <button className="btn1" onClick={(e) => createProject(e)}>Create Project</button>
                                     </div>
                                 </div>
                             </form>

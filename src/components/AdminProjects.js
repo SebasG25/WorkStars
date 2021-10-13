@@ -10,9 +10,7 @@ export default function AdminProjects(props) {
     useEffect(() => {
         async function fetchData() {
             const res = await axios.get('http://localhost:3001/projects')
-            if (res.data.length > 0) {
-                setData(res.data)
-            }
+            setData(res.data)
         }
         fetchData()
     }, [])
