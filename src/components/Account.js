@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+import useAuth from '../auth/useAuth'
 
-export default class Account extends Component {
-    render() {
-        return (
-            <div>
-                <h1>My Account</h1>
-            </div>
-        )
-    }
+const Account = () => {
+    const { user } = useAuth()
+
+    return (
+        <div>
+            <h1>Hello {user.name}</h1>
+        </div>
+    )
 }
+
+export default Account
+

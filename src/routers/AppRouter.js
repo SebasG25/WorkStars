@@ -17,6 +17,8 @@ import AdminUsers from '../components/AdminUsers';
 import AdminProjects from '../components/AdminProjects';
 
 import NotFoundPage from '../components/NotFoundPage';
+import Collaborators from '../components/Collaborators';
+import CreateProject from '../components/CreateProject';
 
 
 function AppRouter() {
@@ -30,8 +32,11 @@ function AppRouter() {
           <PublicRoute path={routes.home} exact component={HomePage}></PublicRoute>
 
           <PublicRoute exact path={routes.signin} component={SignIn}></PublicRoute>
-          <PublicRoute exact path={routes.signup} component={SignUp}></PublicRoute>
+          <PrivateRoute hasRole={roles.admin} exact path={routes.signup} component={SignUp}></PrivateRoute>
           <PrivateRoute exact path={routes.account} component={Account}></PrivateRoute>
+
+          <PrivateRoute hasRole={roles.admin} exact path={routes.admin.collaborators} component={Collaborators}></PrivateRoute>
+          <PrivateRoute hasRole={roles.admin} exact path={routes.admin.createProject} component={CreateProject}></PrivateRoute>
 
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.users} component={AdminUsers}></PrivateRoute>
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.user()} component={AdminUsers}></PrivateRoute>
