@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.row-image {
+    border-right: 2px solid #000000;
+}
+
 .row-signin {
     background: white;
     border-radius: 30px;
