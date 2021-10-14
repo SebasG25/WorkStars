@@ -1,15 +1,11 @@
 import React from 'react'
 import '../styles/SignIn.css'
-import { useLocation } from 'react-router-dom'
 import useAuth from '../auth/useAuth'
-import routes from '../helpers/routes';
-import axios from 'axios';
 
 
 const userCredentials = {};
 
 export default function Signin() {
-    const location = useLocation()
     const { login } = useAuth()
 
     const emailOnChangeHandler = (e) => {

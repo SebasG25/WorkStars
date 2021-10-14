@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import MaterialTable from 'material-table'
 
 
-export default function AdminProjects() {
+export default function AdminProjects(props) {
     const [data, setData] = useState([])
 
     const getData = async () => {
@@ -44,7 +44,7 @@ export default function AdminProjects() {
                         icon: 'add',
                         tooltip: 'Add User',
                         isFreeAction: true,
-                        onClick: (event) => alert("You want to add a new row"),
+                        onClick: (event) => props.history.push(`/signup`),
                     },
                     {
                         icon: 'edit',

@@ -24,18 +24,15 @@ export default function CreateProject() {
 
     const nameOnChangeHandler = (e) => {
         projectData[e.target.name] = e.target.value
-        console.log(projectData)
     }
 
     const addCollaboratorHandler = (e) => {
         e.preventDefault()
         projectData.collaborators.push(userSelected)
-        console.log(projectData.collaborators)
     }
 
     const onSelectChangeHandler = (e) => {
         setUserSelected(e.target.value)
-        console.log(userSelected)
     }
 
     const createProject = async (e) => {

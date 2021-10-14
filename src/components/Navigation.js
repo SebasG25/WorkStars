@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container, NavDropdown, } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom'
 import routes from '../helpers/routes';
+import roles from '../helpers/roles';
 import useAuth from '../auth/useAuth'
 
 export default function Navigation() {
@@ -16,7 +17,7 @@ export default function Navigation() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto" variant="pills">
                         {
-                            user?.role &&
+                            user?.role === roles.admin &&
                             <NavDropdown title="Admin">
                                 <NavDropdown.Item as={NavLink} to={routes.admin.users}>
                                     Usuarios

@@ -11,13 +11,16 @@ export default function AuthProvider({ children }) {
 
     const login = async ({email, password}, e) => {
         setUser({id: 1, role: roles.admin})
-        /*e.preventDefault()
+        e.preventDefault()
         const res = await axios.get('http://localhost:3001/users')
         for (let i = 0; i < res.data.length; i++) {
-            if (email == res.data[i].email && password == res.data[i].password) {
+            console.log(res.data[i])
+            console.log(email === res.data[i].emai)
+            if (email === res.data[i].email && password === res.data[i].password) {
                 setUser(res.data[i])
             }
-        }*/
+        }
+        
     }
 
     const logout = () => setUser(null)
