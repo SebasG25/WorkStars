@@ -2,46 +2,41 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 
-class Collaboratorss extends Component {
+class Collaborators extends Component {
   constructor(props) {
     super(props);
   }
 
   state = {
     show: false,
-    inactives: [
-      { id: 4, name: "Daniel" },
-      { id: 5, name: "Prueba" },
-    ],
+    inactives: [],
     users: [],
-    collaboratorsData: ["Sebastian", "Federico", "Dianella"],
+    collaboratorsData: [],
     projectInfo: {},
     userData: [],
-    userSelected: {},
-    ejemplo: {
-      collaborators: [1, 2, 3, 5],
-      name: "project 1",
-      id: 1,
-    },
+    userSelected: "",
   };
 
-  componentDidMount() {
-    this.getCollaborators();
-    this.getProjectInfo();
-    this.getCollaboratorsProject();
-    //this.getNoCollaborators()
+  async componentDidMount() {
+    await this.getProjectInfo();
+    await this.getNoCollaborators();
   }
 
-  getCollaborators = async () => {
-    const resCollaborators = await axios.get(`http://localhost:3001/users`);
-    this.setState({ users: resCollaborators.data });
+  getUsers = async () => {
+    const resUsers = await axios.get(`http://localhost:3001/users`);
+    this.setState({ users: [...resUsers.data] });
   };
 
   getNoCollaborators = () => {
     this.setState({
-      inactives: this.state.users.filter(
-        (user) => !this.state.projectInfo.collaborators.includes(user.id)
-      ),
+      inactives: this.state.users
+        .map((user) => JSON.stringify(user))
+        .filter(
+          (userString) =>
+            !this.state.collaboratorsData
+              .map((collaborator) => JSON.stringify(collaborator))
+              .includes(userString)
+        ).map((u) => JSON.parse(u)),
     });
   };
 
@@ -49,26 +44,49 @@ class Collaboratorss extends Component {
     const resProject = await axios.get(
       `http://localhost:3001/projects/${this.props.match.params.id}`
     );
-    this.setState({ projectInfo: resProject.data });
-  };
-
-  getCollaboratorsProject = () => {
-    for (let i = 0; i < this.state.projectInfo.collaborators; i++) {
-      for (let j = 0; j < this.state.users; j++) {}
-    }
+    await this.setState({ projectInfo: resProject.data });
+    await this.setState({ collaboratorsData: this.state.projectInfo.collaborators });
+    await this.getUsers();
   };
 
   handleClose = () => {
     this.setState({ show: !this.state.show });
   };
 
-  addCollaborator = () => {
-    this.setState({
-      collaboratorsData: [...this.state.collaboratorsData, "Daniel"],
-      inactives: this.state.inactives.filter((user) => user.name != "Daniel"),
-    });
+  addCollaborator = async () => {
+    await this.setState(prevState => ({
+      collaboratorsData: [...this.state.collaboratorsData, JSON.parse(this.state.userSelected)],
+      projectInfo: {
+        ...prevState.projectInfo,
+        collaborators: [...this.state.collaboratorsData, JSON.parse(this.state.userSelected)]
+      }
+    }))
+    await axios.put(`http://localhost:3001/projects/${this.props.match.params.id}`, this.state.projectInfo)
+    this.getNoCollaborators();
     this.handleClose();
   };
+
+  onInputChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+    console.log(this.state.userSelected)
+  }
+
+  deleteCollaborator = async (id) => {
+    await this.setState(prevState => ({
+      collaboratorsData: prevState.collaboratorsData.filter(user => user.id !== id),
+      projectInfo: {
+        ...prevState.projectInfo,
+        collaborators: prevState.collaboratorsData.filter(user => user.id !== id)
+      }
+    }))
+
+    await axios.put(`http://localhost:3001/projects/${this.props.match.params.id}`, this.state.projectInfo)
+
+    this.getNoCollaborators();
+    console.log(this.state.projectInfo)
+    console.log(this.state.collaboratorsData)
+
+  }
 
   render() {
     return (
@@ -90,6 +108,9 @@ class Collaboratorss extends Component {
               <Modal.Body>
                 <div className="row justify-content-center">
                   <select
+                    name="userSelected"
+                    value={this.state.userSelected}
+                    onChange={this.onInputChange}
                     className="col-auto text-center inp justify-content-center"
                     id="inputGroupSelect01"
                   >
@@ -97,7 +118,7 @@ class Collaboratorss extends Component {
                       Choose a collaborator
                     </option>
                     {this.state.inactives.map((user) => (
-                      <option key={user.id} value={user.id}>
+                      <option key={user.id} value={JSON.stringify(user)}>
                         {" "}
                         {user.name}
                       </option>
@@ -117,20 +138,20 @@ class Collaboratorss extends Component {
           </div>
           <div className="row">
             {this.state.collaboratorsData.map((user) => (
-              <div className="col-md-4 p-2" key={user}>
+              <div className="col-md-4 p-2" key={user.id}>
                 <div className="card">
                   <div className="card-body d-flex justify-content-between">
                     <img
                       width="50"
                       className="img-fluid"
-                      src="http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+                      src={user.image}
                       alt="User-Image"
                     ></img>
                     <div className="mt-2">
-                      <h5 className="card-title">{user}</h5>
+                      <h5 className="card-title">{user.name}</h5>
                     </div>
                     <div className="d-flex flex-nowrap">
-                      <button className="btn btn-danger ms-2">Delete</button>
+                      <button className="btn btn-danger ms-2" onClick={() => this.deleteCollaborator(user.id)}>Delete</button>
                     </div>
                   </div>
                 </div>
@@ -143,4 +164,4 @@ class Collaboratorss extends Component {
   }
 }
 
-export default Collaboratorss;
+export default Collaborators;

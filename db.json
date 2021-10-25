@@ -5,67 +5,60 @@
       "role": "admin",
       "name": "Sebastian",
       "password": "1",
-      "id": 1
+      "id": 1,
+      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
     },
     {
       "email": "federico29.mg@gmail.com",
       "role": "regular",
       "name": "Federico",
       "password": "123",
-      "id": 2
+      "id": 2,
+      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
     },
     {
       "email": "chzdiane@gmail.com",
       "role": "regular",
       "name": "Dianella",
       "password": "123",
-      "id": 3
+      "id": 3,
+      "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
     },
     {
-      "role": "regular",
       "email": "danieldiosa95@hotmail.com",
+      "role": "regular",
       "name": "Daniel",
       "password": "123",
-      "id": 4
-    },
-    {
-      "role": "regular",
-      "email": "sebastian.guzman200225@gmail.com",
-      "name": "Prueba",
-      "password": "123",
-      "id": 5
+      "id": 4,
+      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
     }
   ],
   "projects": [
     {
       "collaborators": [
         {
-          "email": "admin@gmail.com",
+          "email": "1",
           "role": "admin",
           "name": "Sebastian",
-          "password": "123",
-          "id": 1
+          "password": "1",
+          "id": 1,
+          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
         },
         {
           "email": "federico29.mg@gmail.com",
           "role": "regular",
           "name": "Federico",
           "password": "123",
-          "id": 2
+          "id": 2,
+          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
         },
         {
           "email": "chzdiane@gmail.com",
           "role": "regular",
           "name": "Dianella",
           "password": "123",
-          "id": 3
-        },
-        {
-          "role": "regular",
-          "email": "sebastian.guzman200225@gmail.com",
-          "name": "Sprint 1",
-          "password": "123",
-          "id": 5
+          "id": 3,
+          "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
         }
       ],
       "name": "project 1",
@@ -73,16 +66,36 @@
     },
     {
       "collaborators": [
-        1,
-        2
+        {
+          "email": "chzdiane@gmail.com",
+          "role": "regular",
+          "name": "Dianella",
+          "password": "123",
+          "id": 3,
+          "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+        }
       ],
-      "name": "project 2",
+      "name": "Project 2",
       "id": 2
     },
     {
       "collaborators": [
-        2,
-        3
+        {
+          "email": "federico29.mg@gmail.com",
+          "role": "regular",
+          "name": "Federico",
+          "password": "123",
+          "id": 2,
+          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+        },
+        {
+          "email": "chzdiane@gmail.com",
+          "role": "regular",
+          "name": "Dianella",
+          "password": "123",
+          "id": 3,
+          "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+        }
       ],
       "name": "Proyecto Prueba",
       "id": 3
