@@ -8,8 +8,7 @@ const routes = {
         users: '/admin/users',
         user: (userId) => (userId ? `/admin/users/:${userId}` : '/admin/users/userId') ,
         projects: '/admin/projects',
-        collaborators: '/admin/projects/:id/collaborators',
-        collaboratorss: '/admin/projects/:id/collaboratorss'
+        collaborators: '/admin/projects/:id/collaborators'
     }
 }
 

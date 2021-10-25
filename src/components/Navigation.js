@@ -27,13 +27,20 @@ export default function Navigation() {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         }
+                        {
+                            isLogged() && 
+                            <Nav.Link as={NavLink} to={routes.signin}>
+                                Empleados
+                            </Nav.Link>}
+                        }
                     </Nav>
                     <Nav variant="pills">
                         {
                             !isLogged() && 
                             <Nav.Link as={NavLink} to={routes.signin}>
                                 Iniciar Sesión
-                            </Nav.Link>}
+                            </Nav.Link>
+                        }
                         {
                             user?.role === 'admin' && <Nav.Link as={NavLink} to={routes.signup}>Registrar Empleados</Nav.Link>
                         }

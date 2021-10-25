@@ -18,7 +18,6 @@ import AdminProjects from '../components/AdminProjects';
 
 import NotFoundPage from '../components/NotFoundPage';
 import Collaborators from '../components/Collaborators';
-import Collaboratorss from '../components/Collaboratorss';
 import CreateProject from '../components/CreateProject';
 
 
@@ -37,7 +36,6 @@ function AppRouter() {
           <PrivateRoute exact path={routes.account} component={Account}></PrivateRoute>
 
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.collaborators} component={Collaborators}></PrivateRoute>
-          <PrivateRoute hasRole={roles.admin} exact path={routes.admin.collaboratorss} component={Collaboratorss}></PrivateRoute>
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.createProject} component={CreateProject}></PrivateRoute>
 
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.users} component={AdminUsers}></PrivateRoute>

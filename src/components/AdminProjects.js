@@ -48,7 +48,7 @@ export default function AdminProjects(props) {
                     {
                         icon: 'search',
                         tooltip: 'View Collaborators',
-                        onClick: (event, rowData) => props.history.push(`/admin/projects/${rowData.id}/collaboratorss`),
+                        onClick: (event, rowData) => props.history.push(`/admin/projects/${rowData.id}/collaborators`),
                         iconProps: { color: "primary" }
                     }
                 ]}

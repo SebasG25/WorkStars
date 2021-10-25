@@ -10,12 +10,11 @@ export default function AuthProvider({ children }) {
     //const [user, setUser] = useState({id: 1, role: roles.admin})
 
     const login = async ({email, password}, e) => {
-        setUser({id: 1, role: roles.admin})
         e.preventDefault()
         const res = await axios.get('http://localhost:3001/users')
         for (let i = 0; i < res.data.length; i++) {
             console.log(res.data[i])
-            console.log(email === res.data[i].emai)
+            console.log(email === res.data[i].email)
             if (email === res.data[i].email && password === res.data[i].password) {
                 setUser(res.data[i])
             }

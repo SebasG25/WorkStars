@@ -1,104 +1,146 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Modal, Button } from 'react-bootstrap';
+import React, { Component } from "react";
+import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
 
-var collabs = [];
-var inactives = []
-const projectData = {}
+class Collaboratorss extends Component {
+  constructor(props) {
+    super(props);
+  }
 
+  state = {
+    show: false,
+    inactives: [
+      { id: 4, name: "Daniel" },
+      { id: 5, name: "Prueba" },
+    ],
+    users: [],
+    collaboratorsData: ["Sebastian", "Federico", "Dianella"],
+    projectInfo: {},
+    userData: [],
+    userSelected: {},
+    ejemplo: {
+      collaborators: [1, 2, 3, 5],
+      name: "project 1",
+      id: 1,
+    },
+  };
 
-export default function Collaborators(props) {
-    const [collaborators, setCollaborators] = useState([])
-    const [projectInfo, setProjectInfo] = useState({})
-    const [show, setShow] = useState(false);
-    const [userData, setUserData] = useState([])
-    const [userSelected, setUserSelected] = useState({})
+  componentDidMount() {
+    this.getCollaborators();
+    this.getProjectInfo();
+    this.getCollaboratorsProject();
+    //this.getNoCollaborators()
+  }
 
-    useEffect(() => {
-        async function fetchData() {
-            const res = await axios.get(`http://localhost:3001/projects/${props.match.params.id}`)
-            const resUserData = await axios.get('http://localhost:3001/users')
-            setUserData(resUserData.data)
-            setProjectInfo(res.data)
-            Object.assign(projectData, res.data)
+  getCollaborators = async () => {
+    const resCollaborators = await axios.get(`http://localhost:3001/users`);
+    this.setState({ users: resCollaborators.data });
+  };
 
-            for (let i = 0; i < res.data.collaborators.length; i++) {
-                var resCollaborators = await axios.get(`http://localhost:3001/users/${res.data.collaborators[i]}`)
-                collabs.push(resCollaborators?.data)
-            }
-            setCollaborators(collabs)
-            projectData.name = projectInfo.name
-            inactives = userData.filter(user => !projectData.collaborators.includes(user.id))
-            console.log(userData)
-        }
-        fetchData()
-    }, [props.match.params.id]);
+  getNoCollaborators = () => {
+    this.setState({
+      inactives: this.state.users.filter(
+        (user) => !this.state.projectInfo.collaborators.includes(user.id)
+      ),
+    });
+  };
 
-    const addCollaboratorHandler = async () => {
-        projectData.collaborators.push(parseInt(userSelected))
-        await axios.put(`http://localhost:3001/projects/${props.match.params.id}`, projectData)
-        handleClose()
+  getProjectInfo = async () => {
+    const resProject = await axios.get(
+      `http://localhost:3001/projects/${this.props.match.params.id}`
+    );
+    this.setState({ projectInfo: resProject.data });
+  };
+
+  getCollaboratorsProject = () => {
+    for (let i = 0; i < this.state.projectInfo.collaborators; i++) {
+      for (let j = 0; j < this.state.users; j++) {}
     }
+  };
 
-    const onSelectChangeHandler = (e) => {
-        setUserSelected(e.target.value)
-    }
+  handleClose = () => {
+    this.setState({ show: !this.state.show });
+  };
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  addCollaborator = () => {
+    this.setState({
+      collaboratorsData: [...this.state.collaboratorsData, "Daniel"],
+      inactives: this.state.inactives.filter((user) => user.name != "Daniel"),
+    });
+    this.handleClose();
+  };
 
+  render() {
     return (
+      <div>
         <div className="container-fluid">
-            <div className="row">
-                <div className="col">
-                    <h2>{projectInfo.name}</h2>
-                </div>
-                <div className="col-auto">
-                    <button className="btn btn-primary" onClick={handleShow}>Add collaborator</button>
-                </div>
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Add a new collaborator!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className="row justify-content-center">
-                            <select className="col-auto text-center inp justify-content-center" id="inputGroupSelect01" onChange={(e) => onSelectChangeHandler(e)}>
-                                <option hidden selected>Choose a collaborator</option>
-                                {
-                                    inactives.map(user => <option key={user.id} value={user.id}> {user.name}</option>)
-                                }
-                            </select>
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={addCollaboratorHandler}>
-                            Add
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+          <div className="row">
+            <div className="col">
+              <h2>{this.state.projectInfo.name}</h2>
             </div>
-            <div className="row">
-                {
-                    collaborators.map(collaborator => (
-                        <div className="col-md-4 p-2"
-                            key={collaborator.id}>
-                            <div className="card">
-                                <div className="card-body d-flex justify-content-between">
-                                    <div><h5 className="card-title">{collaborator.name}</h5></div>
-                                    <div className="d-flex flex-nowrap">
-                                        <button
-                                            className="btn btn-danger ms-2">
-                                            Delete
-                                        </button></div>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                }
+            <div className="col-auto">
+              <button className="btn btn-primary" onClick={this.handleClose}>
+                Add collaborator
+              </button>
             </div>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Add a new collaborator!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="row justify-content-center">
+                  <select
+                    className="col-auto text-center inp justify-content-center"
+                    id="inputGroupSelect01"
+                  >
+                    <option hidden selected>
+                      Choose a collaborator
+                    </option>
+                    {this.state.inactives.map((user) => (
+                      <option key={user.id} value={user.id}>
+                        {" "}
+                        {user.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={this.addCollaborator}>
+                  Add
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+          <div className="row">
+            {this.state.collaboratorsData.map((user) => (
+              <div className="col-md-4 p-2" key={user}>
+                <div className="card">
+                  <div className="card-body d-flex justify-content-between">
+                    <img
+                      width="50"
+                      className="img-fluid"
+                      src="http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+                      alt="User-Image"
+                    ></img>
+                    <div className="mt-2">
+                      <h5 className="card-title">{user}</h5>
+                    </div>
+                    <div className="d-flex flex-nowrap">
+                      <button className="btn btn-danger ms-2">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-    )
+      </div>
+    );
+  }
 }
+
+export default Collaboratorss;
