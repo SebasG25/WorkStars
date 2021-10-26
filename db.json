@@ -31,6 +31,14 @@
       "password": "123",
       "id": 4,
       "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+    },
+    {
+      "role": "regular",
+      "email": "sebastian.guzman200225@gmail.com",
+      "name": "Sebastian Guzman Agudelo",
+      "password": "123",
+      "id": 5,
+      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
     }
   ],
   "projects": [
@@ -73,6 +81,22 @@
           "password": "123",
           "id": 3,
           "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+        },
+        {
+          "email": "1",
+          "role": "admin",
+          "name": "Sebastian",
+          "password": "1",
+          "id": 1,
+          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+        },
+        {
+          "role": "regular",
+          "email": "sebastian.guzman200225@gmail.com",
+          "name": "Sebastian Guzman Agudelo",
+          "password": "123",
+          "id": 5,
+          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
         }
       ],
       "name": "Project 2",
@@ -80,14 +104,6 @@
     },
     {
       "collaborators": [
-        {
-          "email": "federico29.mg@gmail.com",
-          "role": "regular",
-          "name": "Federico",
-          "password": "123",
-          "id": 2,
-          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
-        },
         {
           "email": "chzdiane@gmail.com",
           "role": "regular",
@@ -99,6 +115,108 @@
       ],
       "name": "Proyecto Prueba",
       "id": 3
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "idProject": {
+        "collaborators": [
+          {
+            "email": "1",
+            "role": "admin",
+            "name": "Sebastian",
+            "password": "1",
+            "id": 1,
+            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          },
+          {
+            "email": "federico29.mg@gmail.com",
+            "role": "regular",
+            "name": "Federico",
+            "password": "123",
+            "id": 2,
+            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          },
+          {
+            "email": "chzdiane@gmail.com",
+            "role": "regular",
+            "name": "Dianella",
+            "password": "123",
+            "id": 3,
+            "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+          }
+        ],
+        "name": "project 1",
+        "id": 1
+      },
+      "author": {
+        "email": "chzdiane@gmail.com",
+        "role": "regular",
+        "name": "Dianella",
+        "password": "123",
+        "id": 3,
+        "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+      },
+      "receiver": {
+        "email": "federico29.mg@gmail.com",
+        "role": "regular",
+        "name": "Federico",
+        "password": "123",
+        "id": 2,
+        "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      },
+      "post": "Me gustó trabajar contigo"
+    },
+    {
+      "id": 2,
+      "idProject": {
+        "collaborators": [
+          {
+            "email": "1",
+            "role": "admin",
+            "name": "Sebastian",
+            "password": "1",
+            "id": 1,
+            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          },
+          {
+            "email": "federico29.mg@gmail.com",
+            "role": "regular",
+            "name": "Federico",
+            "password": "123",
+            "id": 2,
+            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          },
+          {
+            "email": "chzdiane@gmail.com",
+            "role": "regular",
+            "name": "Dianella",
+            "password": "123",
+            "id": 3,
+            "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+          }
+        ],
+        "name": "project 1",
+        "id": 1
+      },
+      "author": {
+        "email": "federico29.mg@gmail.com",
+        "role": "regular",
+        "name": "Federico",
+        "password": "123",
+        "id": 2,
+        "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      },
+      "receiver": {
+        "email": "federico29.mg@gmail.com",
+        "role": "regular",
+        "name": "Federico",
+        "password": "123",
+        "id": 2,
+        "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      },
+      "post": "Buen trabajo"
     }
   ]
 }

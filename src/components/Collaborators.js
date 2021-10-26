@@ -145,9 +145,9 @@ class Collaborators extends Component {
                       width="50"
                       className="img-fluid"
                       src={user.image}
-                      alt="User-Image"
+                      alt="user"
                     ></img>
-                    <div className="mt-2">
+                    <div className="mt-2 align-self-center">
                       <h5 className="card-title">{user.name}</h5>
                     </div>
                     <div className="d-flex flex-nowrap">

@@ -12,6 +12,8 @@ import HomePage from '../components/HomePage';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import Account from '../components/Account';
+import Employees from '../components/Employees'
+import EmployeePosts from '../components/EmployeePosts'
 
 import AdminUsers from '../components/AdminUsers';
 import AdminProjects from '../components/AdminProjects';
@@ -34,6 +36,8 @@ function AppRouter() {
           <PublicRoute exact path={routes.signin} component={SignIn}></PublicRoute>
           <PrivateRoute hasRole={roles.admin} exact path={routes.signup} component={SignUp}></PrivateRoute>
           <PrivateRoute exact path={routes.account} component={Account}></PrivateRoute>
+          <PrivateRoute exact path={routes.employees} component={Employees}></PrivateRoute>
+          <PrivateRoute exact path={routes.posts} component={EmployeePosts}></PrivateRoute>
 
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.collaborators} component={Collaborators}></PrivateRoute>
           <PrivateRoute hasRole={roles.admin} exact path={routes.admin.createProject} component={CreateProject}></PrivateRoute>

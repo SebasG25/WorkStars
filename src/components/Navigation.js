@@ -29,7 +29,7 @@ export default function Navigation() {
                         }
                         {
                             isLogged() && 
-                            <Nav.Link as={NavLink} to={routes.signin}>
+                            <Nav.Link as={NavLink} to={routes.employees}>
                                 Empleados
                             </Nav.Link>}
                         }

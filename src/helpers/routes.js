@@ -3,6 +3,8 @@ const routes = {
     signin: '/signin',
     signup: '/signup',
     account: '/account',
+    employees: '/employees',
+    posts: '/employees/:id/posts',
     admin: {
         createProject:'/admin/create/project',
         users: '/admin/users',
