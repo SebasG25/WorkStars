@@ -38,7 +38,8 @@ class Employees extends Component {
                                 </div>
                                 <div className="d-flex flex-nowrap">
                                     <h4 className="align-self-center mx-2">2</h4>
-                                    <button className="btn btn-outline-primary" onClick={() => this.props.history.push(`/employees/${user.id}/posts`)}>Posts</button>
+                                    <button className="btn btn-outline-primary" 
+                                    onClick={() => this.props.history.push(`/employees/${user.id}/posts`)}>Posts</button>
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@ import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import Account from '../components/Account';
 import Employees from '../components/Employees'
-import EmployeePosts from '../components/EmployeePosts'
+import EmployeePosts from '../components/EmployePosts'
 
 import AdminUsers from '../components/AdminUsers';
 import AdminProjects from '../components/AdminProjects';
