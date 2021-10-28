@@ -13,8 +13,6 @@ export default function AuthProvider({ children }) {
         e.preventDefault()
         const res = await axios.get('http://localhost:3001/users')
         for (let i = 0; i < res.data.length; i++) {
-            console.log(res.data[i])
-            console.log(email === res.data[i].email)
             if (email === res.data[i].email && password === res.data[i].password) {
                 setUser(res.data[i])
             }
