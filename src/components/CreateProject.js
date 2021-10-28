@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 const projectData = {
-    collaborators: []
+    collaborators: [],
+    inactives: [],
 }
 
 
-export default function CreateProject() {
+export default function CreateProject(props) {
 
     const [data, setData] = useState([])
 
     const [userSelected, setUserSelected] = useState({})
+    const [collaborators, setCollaborator] = useState([])
+    const [inactives, setInactives] = useState([])
 
     const getData = async () => {
         const res = await axios.get('http://localhost:3001/users')
         setData(res.data)
+        setInactives(res.data)
     }
 
     useEffect(() => {
@@ -29,16 +37,29 @@ export default function CreateProject() {
     const addCollaboratorHandler = (e) => {
         e.preventDefault()
         projectData.collaborators.push(userSelected)
+        MySwal.fire({
+            icon: 'success',
+            title: 'Colaborador agregado exitosamente',
+            showConfirmButton: false,
+            timer: 750
+        })
+        setCollaborator(...collaborators, userSelected)
     }
 
     const onSelectChangeHandler = (e) => {
-        setUserSelected(e.target.value)
+        setUserSelected(JSON.parse(e.target.value))
     }
 
     const createProject = async (e) => {
         e.preventDefault()
         await axios.post('http://localhost:3001/projects', projectData)
-        alert('Creado exitosamente')
+        MySwal.fire({
+            icon: 'success',
+            title: 'Proyecto creado exitosamente',
+            showConfirmButton: false,
+            timer: 1000
+        })
+        props.history.push(`/admin/projects`)
     }
 
 
@@ -65,7 +86,7 @@ export default function CreateProject() {
                                         <select className="inp px-2" id="inputGroupSelect01" onChange={(e) => onSelectChangeHandler(e)}>
                                             <option hidden selected>Choose a collaborator</option>
                                             {
-                                                data.map(user => <option key={user.id} value={user.id}> {user.name}</option>)
+                                                inactives.map(user => <option key={user.id} value={JSON.stringify(user)}> {user.name}</option>)
                                             }
                                         </select>
                                         <div class="col-auto my-2">

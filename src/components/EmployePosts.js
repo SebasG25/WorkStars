@@ -10,10 +10,10 @@ const EmployePosts = (props) => {
     const [posts, setPosts] = useState([])
 
 
-    useEffect(async () => {
-        await getReceiver();
-        await fetchUserData();
-        await getPosts();
+    useEffect(() => {
+        getReceiver();
+        fetchUserData();
+        getPosts();
     }, [])
 
     const fetchUserData = async () => {

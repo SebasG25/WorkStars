@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import MaterialTable from 'material-table'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
+const MySwal = withReactContent(Swal)
 
 export default function AdminProjects(props) {
     const [data, setData] = useState([])
@@ -17,7 +20,7 @@ export default function AdminProjects(props) {
 
     const columns = [
         {
-            title: 'ID',
+            title: 'ID Usuario',
             field: 'id'
         },
         {
@@ -50,17 +53,48 @@ export default function AdminProjects(props) {
                     {
                         icon: 'edit',
                         tooltip: 'Editar Usuario',
-                        onClick: (event, rowData) => alert('Has presionado editar al usuario: ' + rowData.name),
+                        onClick: (event, rowData) => MySwal.fire({
+                            icon: 'success',
+                            title: 'Has presionado editar al usuario: ' + rowData.name,
+                            showConfirmButton: false,
+                            timer: 1000
+                        }),
                         iconProps: { color: "primary" }
                     },
                     {
                         icon: 'delete',
                         tooltip: 'Eliminar Usuario',
                         onClick: async (event, rowData) => {
-                            if (window.confirm("You want to delete " + rowData.name)) {
-                                await axios.delete(`http://localhost:3001/users/${rowData.id}`)
-                                getData();
-                            }
+                            MySwal.fire({
+                                title: `¿Estás seguro de que quieres eliminar al usuario: ${rowData.name}?`,
+                                icon: 'warning',
+                                showDenyButton: true,
+                                showCancelButton: true,
+                                showConfirmButton: false,
+                                cancelButtonText: `Cancelar`,
+                                denyButtonText: `Confirmar`,
+                            }).then(async (result) => {
+                                if (result.isDenied) {
+                                    try {
+                                        await axios.delete(`http://localhost:3001/users/${rowData.id}`)
+                                        MySwal.fire({
+                                            icon: 'success',
+                                            title: 'Usuario eliminado!',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        })
+                                        getData();
+                                    } catch (error) {
+                                        MySwal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Algo salió mal!',
+                                            footer: `<p>${error.name}: ${error.message}</p>`
+                                        })
+                                    }
+
+                                }
+                            })
                         },
                         iconProps: { color: "error" }
                     }

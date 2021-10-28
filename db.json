@@ -6,7 +6,7 @@
       "name": "Sebastian",
       "password": "1",
       "id": 1,
-      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      "image": "https://i.imgur.com/B8iomlC.png"
     },
     {
       "email": "federico29.mg@gmail.com",
@@ -14,7 +14,7 @@
       "name": "Federico",
       "password": "123",
       "id": 2,
-      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      "image": "https://i.imgur.com/B8iomlC.png"
     },
     {
       "email": "chzdiane@gmail.com",
@@ -22,7 +22,7 @@
       "name": "Dianella",
       "password": "123",
       "id": 3,
-      "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+      "image": "https://i.imgur.com/LWv2ZWo.png"
     },
     {
       "email": "danieldiosa95@hotmail.com",
@@ -30,7 +30,7 @@
       "name": "Daniel",
       "password": "123",
       "id": 4,
-      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      "image": "https://i.imgur.com/B8iomlC.png"
     },
     {
       "role": "regular",
@@ -38,7 +38,15 @@
       "name": "Sebastian Guzman Agudelo",
       "password": "123",
       "id": 5,
-      "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+      "image": "https://i.imgur.com/B8iomlC.png"
+    },
+    {
+      "role": "regular",
+      "email": "prueba@gmail.com",
+      "name": "preba",
+      "password": "prueba",
+      "id": 6,
+      "image": "https://i.imgur.com/B8iomlC.png"
     }
   ],
   "projects": [
@@ -50,7 +58,7 @@
           "name": "Sebastian",
           "password": "1",
           "id": 1,
-          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          "image": "https://i.imgur.com/B8iomlC.png"
         },
         {
           "email": "federico29.mg@gmail.com",
@@ -58,7 +66,7 @@
           "name": "Federico",
           "password": "123",
           "id": 2,
-          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          "image": "https://i.imgur.com/B8iomlC.png"
         },
         {
           "email": "chzdiane@gmail.com",
@@ -66,7 +74,7 @@
           "name": "Dianella",
           "password": "123",
           "id": 3,
-          "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+          "image": "https://i.imgur.com/LWv2ZWo.png"
         }
       ],
       "name": "project 1",
@@ -80,7 +88,7 @@
           "name": "Dianella",
           "password": "123",
           "id": 3,
-          "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+          "image": "https://i.imgur.com/LWv2ZWo.png"
         },
         {
           "email": "1",
@@ -88,7 +96,7 @@
           "name": "Sebastian",
           "password": "1",
           "id": 1,
-          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          "image": "https://i.imgur.com/B8iomlC.png"
         },
         {
           "role": "regular",
@@ -96,7 +104,7 @@
           "name": "Sebastian Guzman Agudelo",
           "password": "123",
           "id": 5,
-          "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+          "image": "https://i.imgur.com/B8iomlC.png"
         }
       ],
       "name": "Project 2",
@@ -110,11 +118,34 @@
           "name": "Dianella",
           "password": "123",
           "id": 3,
-          "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+          "image": "https://i.imgur.com/LWv2ZWo.png"
         }
       ],
       "name": "Proyecto Prueba",
       "id": 3
+    },
+    {
+      "collaborators": [
+        {
+          "email": "federico29.mg@gmail.com",
+          "role": "regular",
+          "name": "Federico",
+          "password": "123",
+          "id": 2,
+          "image": "https://i.imgur.com/B8iomlC.png"
+        },
+        {
+          "role": "regular",
+          "email": "prueba@gmail.com",
+          "name": "preba",
+          "password": "prueba",
+          "id": 6,
+          "image": "https://i.imgur.com/B8iomlC.png"
+        }
+      ],
+      "inactives": [],
+      "name": "Proyecto 4 ",
+      "id": 4
     }
   ],
   "posts": [
@@ -128,7 +159,7 @@
             "name": "Sebastian",
             "password": "1",
             "id": 1,
-            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+            "image": "https://i.imgur.com/B8iomlC.png"
           },
           {
             "email": "federico29.mg@gmail.com",
@@ -136,7 +167,7 @@
             "name": "Federico",
             "password": "123",
             "id": 2,
-            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+            "image": "https://i.imgur.com/B8iomlC.png"
           },
           {
             "email": "chzdiane@gmail.com",
@@ -144,7 +175,7 @@
             "name": "Dianella",
             "password": "123",
             "id": 3,
-            "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+            "image": "https://i.imgur.com/LWv2ZWo.png"
           }
         ],
         "name": "project 1",
@@ -156,7 +187,7 @@
         "name": "Dianella",
         "password": "123",
         "id": 3,
-        "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+        "image": "https://i.imgur.com/LWv2ZWo.png"
       },
       "receiver": {
         "email": "federico29.mg@gmail.com",
@@ -164,7 +195,7 @@
         "name": "Federico",
         "password": "123",
         "id": 2,
-        "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+        "image": "https://i.imgur.com/B8iomlC.png"
       },
       "post": "Me gustó trabajar contigo"
     },
@@ -178,7 +209,7 @@
             "name": "Sebastian",
             "password": "1",
             "id": 1,
-            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+            "image": "https://i.imgur.com/B8iomlC.png"
           },
           {
             "email": "federico29.mg@gmail.com",
@@ -186,7 +217,7 @@
             "name": "Federico",
             "password": "123",
             "id": 2,
-            "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+            "image": "https://i.imgur.com/B8iomlC.png"
           },
           {
             "email": "chzdiane@gmail.com",
@@ -194,7 +225,7 @@
             "name": "Dianella",
             "password": "123",
             "id": 3,
-            "image": "http://assets.stickpng.com/thumbs/585e4bc4cb11b227491c3395.png"
+            "image": "https://i.imgur.com/LWv2ZWo.png"
           }
         ],
         "name": "project 1",
@@ -206,7 +237,7 @@
         "name": "Federico",
         "password": "123",
         "id": 2,
-        "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+        "image": "https://i.imgur.com/B8iomlC.png"
       },
       "receiver": {
         "email": "federico29.mg@gmail.com",
@@ -214,7 +245,7 @@
         "name": "Federico",
         "password": "123",
         "id": 2,
-        "image": "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
+        "image": "https://i.imgur.com/B8iomlC.png"
       },
       "post": "Buen trabajo"
     }

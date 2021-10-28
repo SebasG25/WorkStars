@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React from 'react'
 import '../styles/SignIn.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
+const MySwal = withReactContent(Swal)
 
 const userData = {
     role: "regular"
@@ -11,7 +14,12 @@ export default function SignUp() {
     const registerUser = async (e) => {
         e.preventDefault()
         await axios.post('http://localhost:3001/users', userData)
-        alert('Registrado exitosamente')
+        MySwal.fire({
+            icon: 'success',
+            title: 'Usuario registrado exitosamente',
+            showConfirmButton: false,
+            timer: 1000
+        })
     }
 
     const emailOnChangeHandler = (e) => {
