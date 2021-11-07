@@ -24,7 +24,7 @@ const Account = () => {
 
     const handleFileChange = (e) => {
         const [file] = e.target.files;
-        const SIZE_20MB = 10 * 1024 * 1024
+        const SIZE_10MB = 10 * 1024 * 1024
         const isValidSize = file?.size < SIZE_20MB
         const isNameOfOneImageRegEx = /.(jpe?g|gif|png)$/i;
         const isValidType = isNameOfOneImageRegEx.test(file?.name)
@@ -34,7 +34,7 @@ const Account = () => {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Parece que el tamaño de la imagen es muy grande',
-                footer: 'El tamaño máximo es 20MB'
+                footer: 'El tamaño máximo es 10MB'
             })
         }
         if (!isValidType) {
