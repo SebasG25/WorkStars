@@ -3,17 +3,21 @@ import React, { useEffect, useState } from 'react'
 import MaterialTable from 'material-table'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { Modal, Button } from "react-bootstrap";
 
 const MySwal = withReactContent(Swal)
 
 export default function AdminProjects(props) {
 
     const [data, setData] = useState([])
+    const [show, setShow] = useState(false)
+    const [projectData, setProjectData] = useState({})
 
     const getData = async () => {
         const res = await axios.get('http://localhost:3001/projects')
         await setData(res.data)
     }
+
 
     useEffect(() => {
         async function fetchData() {
@@ -40,6 +44,42 @@ export default function AdminProjects(props) {
         }
     ]
 
+    const handleClose = () => {
+        setShow(!show);
+    };
+
+    const onInputChange = (e) => {
+        setProjectData({
+            ...projectData,
+            name: e.target.value
+        })
+    }
+
+    const editProject = async () => {
+        try {
+            delete projectData.tableData
+            await axios.put(`http://localhost:3001/projects/${projectData.id}`, projectData)
+            getData();
+
+            MySwal.fire({
+                icon: 'success',
+                title: 'Proyecto editado correctamente!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            getData();
+        } catch (error) {
+            console.log(error)
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal!',
+                footer: `<p>${error.name}: ${error.message}</p>`
+            })
+        }
+        handleClose();
+    };
+
     return (
         <div className="container">
             <MaterialTable
@@ -56,12 +96,10 @@ export default function AdminProjects(props) {
                     {
                         icon: 'edit',
                         tooltip: 'Editar Proyecto',
-                        onClick: (event, rowData) => MySwal.fire({
-                            icon: 'success',
-                            title: 'Has presionado editar al proyecto: ' + rowData.name,
-                            showConfirmButton: false,
-                            timer: 1000
-                        }),
+                        onClick: (event, rowData) => {
+                            setShow(true)
+                            setProjectData(rowData)
+                        },
                         iconProps: { color: "primary" }
                     },
                     {
@@ -88,7 +126,7 @@ export default function AdminProjects(props) {
                                         await axios.delete(`http://localhost:3001/projects/${rowData.id}`)
                                         MySwal.fire({
                                             icon: 'success',
-                                            title: 'Usuario eliminado!',
+                                            title: 'Proyecto eliminado!',
                                             showConfirmButton: false,
                                             timer: 1000
                                         })
@@ -101,7 +139,7 @@ export default function AdminProjects(props) {
                                             text: 'Algo salió mal!',
                                             footer: `<p>${error.name}: ${error.message}</p>`
                                         })
-                                        
+
                                     }
 
                                 }
@@ -121,6 +159,24 @@ export default function AdminProjects(props) {
             >
 
             </MaterialTable>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edita el nombre de tu proyecto</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="row justify-content-center">
+                        <input className="inp px-2" type="text" name="name" placeholder="Project Name" value={projectData?.name} onChange={onInputChange} />
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={editProject}>
+                        Edit
+                    </Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

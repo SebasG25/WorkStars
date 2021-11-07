@@ -1,6 +1,10 @@
 import axios from 'axios'
 import { useState, createContext } from 'react'
 import roles from '../helpers/roles'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 export const AuthContext = createContext()
 
@@ -15,8 +19,19 @@ export default function AuthProvider({ children }) {
         for (let i = 0; i < res.data.length; i++) {
             if (email === res.data[i].email && password === res.data[i].password) {
                 setUser(res.data[i])
+                return MySwal.fire({
+                    icon: 'success',
+                    title: `Bienvenido, ${res.data[i].name}`,
+                    showConfirmButton: false,
+                    timer: 700
+                  })
             }
         }
+        return MySwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal',
+          })
         
     }
 
