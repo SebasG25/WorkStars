@@ -59,8 +59,6 @@ export default function AdminProjects(props) {
         try {
             delete projectData.tableData
             await axios.put(`http://localhost:3001/projects/${projectData.id}`, projectData)
-            getData();
-
             MySwal.fire({
                 icon: 'success',
                 title: 'Proyecto editado correctamente!',
@@ -69,7 +67,6 @@ export default function AdminProjects(props) {
             })
             getData();
         } catch (error) {
-            console.log(error)
             MySwal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -119,7 +116,7 @@ export default function AdminProjects(props) {
                                 showCancelButton: true,
                                 showConfirmButton: false,
                                 cancelButtonText: `Cancelar`,
-                                denyButtonText: `Confirmar`,
+                                denyButtonText: `Eliminar`,
                             }).then(async (result) => {
                                 if (result.isDenied) {
                                     try {
@@ -170,10 +167,10 @@ export default function AdminProjects(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={editProject}>
-                        Edit
+                        Editar
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Cerrar
                     </Button>
                 </Modal.Footer>
             </Modal>

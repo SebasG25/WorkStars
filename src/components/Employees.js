@@ -17,7 +17,7 @@ const Employees = (props) => {
         await setUsersData([...resUsers.data]);
     }
 
-    const getPosts = async () => {
+    /*const getPosts = async () => {
         userPostCounter.map((user) => {
             const resPosts = axios.get(`http://localhost:3001/posts?receiver.id=${user.id}`)
             console.log(resPosts)
@@ -25,7 +25,7 @@ const Employees = (props) => {
             console.log(user)
         })
         //setUsersData([...postCounter])
-    }
+    }*/
 
     const getPostCounter = async () => {
         for (let i = 0; i < usersData.length; i++) {
@@ -46,12 +46,15 @@ const Employees = (props) => {
                                 className="img-fluid"
                                 src={user.image}
                                 alt="user"
+                                style={{
+                                    objectFit: 'cover'
+                                }}
                             ></img>
                             <div className="mt-2 align-self-center">
                                 <h5 className="card-title">{user.name}</h5>
                             </div>
                             <div className="d-flex flex-nowrap">
-                                <h4 className="align-self-center mx-2">{userPostCounter[user.id-1]}</h4>
+                                {/**<h4 className="align-self-center mx-2">{userPostCounter[user.id-1]}</h4>**/}
                                 <button className="btn btn-outline-primary"
                                     onClick={() => props.history.push(`/employees/${user.id}/posts`)}>Posts</button>
                             </div>

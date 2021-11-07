@@ -69,7 +69,13 @@ export default function CreateProject(props) {
                 <div className="container">
                     <div className="g-0 row row-signin">
                         <div className="col-lg-5 col-md-5 col-sm-5">
-                            <img className="img-fluid" src="https://i.imgur.com/hriWgYh.jpg" alt="" />
+                            <img
+                                className="img-fluid" src="https://i.imgur.com/hriWgYh.jpg"
+                                alt="logo"
+                                style={{
+                                    objectFit: 'cover'
+                                }}
+                            />
                         </div>
                         <div className="col-lg-7 col-md-7 col-sm-7 text-center py-5">
                             <h1 className="animate__animated animate__tada">Create a Project</h1>

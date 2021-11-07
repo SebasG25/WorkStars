@@ -73,7 +73,7 @@ export default function AdminProjects(props) {
                                 showCancelButton: true,
                                 showConfirmButton: false,
                                 cancelButtonText: `Cancelar`,
-                                denyButtonText: `Confirmar`,
+                                denyButtonText: `Eliminar`,
                             }).then(async (result) => {
                                 if (result.isDenied) {
                                     try {
