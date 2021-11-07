@@ -231,11 +231,11 @@
         "id": 1
       },
       "author": {
-        "email": "federico29.mg@gmail.com",
-        "role": "regular",
-        "name": "Federico",
-        "password": "123",
-        "id": 2,
+        "email": "1",
+        "role": "admin",
+        "name": "Sebastian",
+        "password": "1",
+        "id": 1,
         "image": "https://i.imgur.com/B8iomlC.png"
       },
       "receiver": {

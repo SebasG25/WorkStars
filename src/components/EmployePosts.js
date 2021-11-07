@@ -3,7 +3,6 @@ import axios from "axios";
 import useAuth from '../auth/useAuth';
 
 const EmployePosts = (props) => {
-    let prueba;
     const { user } = useAuth();
     const [userSession, setUserSession] = useState({})
     const [userReceiver, setUserReceiver] = useState(null)
@@ -28,8 +27,6 @@ const EmployePosts = (props) => {
     const getReceiver = async () => {
         const resUserReceiver = await axios.get(`http://localhost:3001/users?id=${props.match.params.id}`)
         await setUserReceiver(resUserReceiver?.data[0])
-        prueba = await userReceiver;
-        console.log(prueba)
     }
 
     let button;
@@ -38,12 +35,17 @@ const EmployePosts = (props) => {
         button = <button className="btn btn-primary">Dar una estrella</button>
     }
 
+    const deletePost = async (post) => {
+        await axios.delete(`http://localhost:3001/posts/${post.id}`)
+        getPosts();
+    }
+
     return (
         <div>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <h1>Post Empleado {userReceiver?.name}</h1>
+                        <h1>Posts Empleado {userReceiver?.name}</h1>
                         {
                             posts.map(post => (
                                 <div className="row " key={post.id}>
@@ -60,6 +62,15 @@ const EmployePosts = (props) => {
                                                 <div className="align-self-center">
                                                     <h5 className="m-0 ms-2 card-title">{post.author.name}</h5>
 
+                                                </div>
+                                                <div className="align-self-center justify-content-end flex-grow-2 ms-auto">
+                                                    {
+                                                        post.author.id === userSession.id &&
+                                                        <div>
+                                                            <button className="btn btn-outline-danger me-2" onClick={() => deletePost(post)}>Eliminar post</button>
+                                                            <button className="btn btn-outline-primary" onClick={() => deletePost(post)}>Editar post</button>
+                                                        </div>
+                                                    }
                                                 </div>
                                             </div>
                                             <div className="card-text">

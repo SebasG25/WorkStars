@@ -21,7 +21,8 @@ export default function AdminProjects(props) {
     const columns = [
         {
             title: 'ID Usuario',
-            field: 'id'
+            field: 'id',
+            align: 'center',
         },
         {
             title: 'Nombre',
