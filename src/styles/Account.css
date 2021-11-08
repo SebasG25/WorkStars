@@ -1,0 +1,15 @@
+.editing-account {
+    transition: all 0.3s ease;
+}
+
+.editing-account:hover {
+    background: #da983c;
+}
+
+.confirm-changes {
+    transition: all 0.3s ease;
+}
+
+.confirm-changes:hover {
+    background-color: #da2822;
+}

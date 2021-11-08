@@ -16,7 +16,6 @@ const EmployePosts = (props) => {
     const [show, setShow] = useState(false)
     const [description, setDescription] = useState(``)
 
-
     useEffect(() => {
         getReceiver();
         fetchUserData();
@@ -37,10 +36,6 @@ const EmployePosts = (props) => {
         await setUserReceiver(resUserReceiver?.data[0])
     }
 
-    let button;
-    if (userSession.id !== parseInt(props.match.params.id)) {
-        button = <button className="btn btn-primary align-self-center justify-content-end ms-auto">Dar una estrella</button>
-    }
 
     const deletePost = async (post) => {
         try {
@@ -112,9 +107,24 @@ const EmployePosts = (props) => {
         setDescription(e.target.value)
     }
 
+    const handleGiveAPost = () => {
+        console.log("Un post")
+    }
+
     const handleClose = () => {
         setShow(!show);
     };
+
+    let button;
+    if (userSession.id !== parseInt(props.match.params.id)) {
+        button =
+            <button
+                className="btn btn-primary align-self-center justify-content-end ms-auto"
+                onClick={handleGiveAPost}
+            >
+                Dar una estrella
+            </button>
+    }
 
     return (
         <div>

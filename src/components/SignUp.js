@@ -8,6 +8,7 @@ const MySwal = withReactContent(Swal)
 
 const userData = {
     role: "regular",
+    description: "",
     image: "https://i.imgur.com/B8iomlC.png"
 }
 
