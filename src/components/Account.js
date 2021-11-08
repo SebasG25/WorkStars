@@ -92,7 +92,8 @@ const Account = () => {
                             height: 200,
                             borderRadius: '50%',
                             objectFit: 'cover',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            border: '5px solid #000',
                         }}
                     />
                 </Col>

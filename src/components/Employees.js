@@ -47,7 +47,10 @@ const Employees = (props) => {
                                 src={user.image}
                                 alt="user"
                                 style={{
-                                    objectFit: 'cover'
+                                    height:'50px',
+                                    width:'50px',
+                                    borderRadius: '50%',
+                                    objectFit: 'cover',
                                 }}
                             ></img>
                             <div className="mt-2 align-self-center">

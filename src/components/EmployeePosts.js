@@ -58,6 +58,12 @@ class EmployeePosts extends Component {
                                                         className="img-fluid"
                                                         src={post.author.image}
                                                         alt="user"
+                                                        style={{
+                                                            height: '50px',
+                                                            width: '50px',
+                                                            borderRadius: '50%',
+                                                            objectFit: 'cover',
+                                                        }}
                                                     ></img>
                                                     <div className="align-self-center">
                                                         <h5 className="m-0 ms-2 card-title">{post.author.name}</h5>

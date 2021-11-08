@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import useAuth from '../auth/useAuth';
-import { Modal, Button } from "react-bootstrap";
+import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 import "../styles/EmployeePosts.css"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -39,7 +39,7 @@ const EmployePosts = (props) => {
 
     let button;
     if (userSession.id !== parseInt(props.match.params.id)) {
-        button = <button className="btn btn-primary">Dar una estrella</button>
+        button = <button className="btn btn-primary align-self-center justify-content-end ms-auto">Dar una estrella</button>
     }
 
     const deletePost = async (post) => {
@@ -121,66 +121,94 @@ const EmployePosts = (props) => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <h1>Posts Empleado {userReceiver?.name}</h1>
+                        <div className="d-flex p-1">
+                            {button}
+                        </div>
+                        <Col xs={12} className="text-center">
+                            <img src={userReceiver?.image}
+                                alt="avatar"
+                                onClick={() => setShow(true)}
+                                style={{
+                                    width: 200,
+                                    height: 200,
+                                    borderRadius: '50%',
+                                    objectFit: 'cover',
+                                    border: '5px solid #000',
+                                }}
+                            />
+                            <h2>{userReceiver?.name}</h2>
+                        </Col>
                         {
-                            posts.map(post => (
-                                <div className="row " key={post.id}>
+                            posts.length !== 0 ?
+                                posts.map(post => (
+                                    <div className="row justify-content-center" key={post.id}>
+                                        <div className="col-md-8 p-2">
+                                            <div className="card d-flex p-2">
+                                                <div className="card-body d-flex justify-content-start">
+                                                    <img
+                                                        width="50"
+                                                        className="img-fluid"
+                                                        src={post.author.image}
+                                                        alt="user"
+                                                        style={{
+                                                            height: '50px',
+                                                            width: '50px',
+                                                            borderRadius: '50%',
+                                                            objectFit: 'cover',
+                                                        }}
+                                                    ></img>
+                                                    <div className="align-self-center">
+                                                        <h5 className="m-0 ms-2 card-title">{post.author.name}</h5>
 
-                                    <div className="col-md-8 p-2">
-                                        <div className="card d-flex p-3">
-                                            <div className="card-body d-flex justify-content-start">
-                                                <img
-                                                    width="50"
-                                                    className="img-fluid"
-                                                    src={post.author.image}
-                                                    alt="user"
-                                                ></img>
-                                                <div className="align-self-center">
-                                                    <h5 className="m-0 ms-2 card-title">{post.author.name}</h5>
-
+                                                    </div>
+                                                    <div className="align-self-center justify-content-end flex-grow-2 ms-auto">
+                                                        {
+                                                            post.author.id === userSession.id &&
+                                                            <div>
+                                                                <button className="btn btn-outline-primary me-2" onClick={() => setShow(true)}>Editar post</button>
+                                                                <button className="btn btn-outline-danger" onClick={() => deletePost(post)}>Eliminar post</button>
+                                                            </div>
+                                                        }
+                                                    </div>
                                                 </div>
-                                                <div className="align-self-center justify-content-end flex-grow-2 ms-auto">
-                                                    {
-                                                        post.author.id === userSession.id &&
-                                                        <div>
-                                                            <button className="btn btn-outline-primary me-2" onClick={() => setShow(true)}>Editar post</button>
-                                                            <button className="btn btn-outline-danger" onClick={() => deletePost(post)}>Eliminar post</button>
-                                                        </div>
-                                                    }
+                                                <div className="card-text">
+                                                    <p className="m-0 ms-3">{post.post}</p>
                                                 </div>
-                                                <Modal show={show} onHide={handleClose}>
-                                                    <Modal.Header closeButton>
-                                                        <Modal.Title>Edita la descripción de tu post</Modal.Title>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <div className="row justify-content-center">
-                                                            <textarea className="inp px-4 pt-4" style={{
-                                                                height: "10em",
-                                                                width: "80%"
-                                                            }} onChange={onInputChange} type="text" minLength="1" rows="5" cols="40" maxLength="500" name="name" placeholder="Descripción del post" />
-                                                        </div>
-                                                    </Modal.Body>
-                                                    <Modal.Footer>
-                                                        <Button variant="primary" onClick={() => editPost(post)}>
-                                                            Editar
-                                                        </Button>
-                                                        <Button variant="secondary" onClick={handleClose}>
-                                                            Cerrar
-                                                        </Button>
-                                                    </Modal.Footer>
-                                                </Modal>
-                                            </div>
-                                            <div className="card-text">
-                                                <p className="m-0 ms-2">{post.post}</p>
                                             </div>
                                         </div>
+                                        <Modal show={show} onHide={handleClose}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Edita la descripción de tu post</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>
+                                                <div className="row justify-content-center">
+                                                    <textarea className="inp px-4 pt-4" style={{
+                                                        height: "10em",
+                                                        width: "80%"
+                                                    }} onChange={onInputChange} type="text" minLength="1" rows="5" cols="40" maxLength="500" name="name" placeholder="Descripción del post" />
+                                                </div>
+                                            </Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="primary" onClick={() => editPost(post)}>
+                                                    Editar
+                                                </Button>
+                                                <Button variant="secondary" onClick={handleClose}>
+                                                    Cerrar
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                     </div>
-                                </div>
-                            ))
+                                ))
+                                :
+                                <h3
+                                    className="text-center pt-3"
+                                    style={{
+                                        color: 'rgb(220,220,220)'
+                                    }}
+                                >
+                                    {userReceiver?.name} aún no tiene posts
+                                </h3>
                         }
-                    </div>
-                    <div className="col-auto">
-                        {button}
                     </div>
                 </div>
             </div>
