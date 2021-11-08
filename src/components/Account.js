@@ -25,7 +25,7 @@ const Account = () => {
     const handleFileChange = (e) => {
         const [file] = e.target.files;
         const SIZE_10MB = 10 * 1024 * 1024
-        const isValidSize = file?.size < SIZE_20MB
+        const isValidSize = file?.size < SIZE_10MB
         const isNameOfOneImageRegEx = /.(jpe?g|gif|png)$/i;
         const isValidType = isNameOfOneImageRegEx.test(file?.name)
 
