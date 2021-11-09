@@ -53,6 +53,15 @@
       "name": "prueba2",
       "password": "123",
       "id": 6
+    },
+    {
+      "role": "regular",
+      "description": "",
+      "image": "https://i.imgur.com/B8iomlC.png",
+      "email": "juandiortiz@gmail.com",
+      "name": "Juan Diego",
+      "password": "juandiego",
+      "id": 7
     }
   ],
   "projects": [
