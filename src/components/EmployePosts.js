@@ -147,7 +147,20 @@ const EmployePosts = (props) => {
                                 }}
                             />
                             <h2>{userReceiver?.name}</h2>
-                            <h5>Estrellas: {posts.length}</h5>
+                            <div className="d-flex justify-content-center">
+                                <h4 className="align-self-center me-2">{posts.length}</h4>
+                                <img
+                                    width="50"
+                                    className="img-fluid"
+                                    src="https://svgsilh.com/svg/304291-3f51b5.svg"
+                                    alt="user"
+                                    style={{
+                                        height: '25px',
+                                        width: '25px',
+                                        objectFit: 'cover',
+                                    }}
+                                ></img>
+                            </div>
                             {
                                 userReceiver?.description !== "" &&
                                 <p>{userReceiver?.description}</p>
