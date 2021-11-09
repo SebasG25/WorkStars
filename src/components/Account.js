@@ -166,7 +166,7 @@ const Account = () => {
                                     }}
                                     onClick={handleEdit}
                                 >
-                                    Editar cuenta
+                                    Editar descripción
                                 </Button>
                                 :
                                 <Button

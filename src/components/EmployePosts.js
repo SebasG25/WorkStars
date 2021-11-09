@@ -147,6 +147,11 @@ const EmployePosts = (props) => {
                                 }}
                             />
                             <h2>{userReceiver?.name}</h2>
+                            <h5>Estrellas: {posts.length}</h5>
+                            {
+                                userReceiver?.description !== "" &&
+                                <p>{userReceiver?.description}</p>
+                            }
                         </Col>
                         {
                             posts.length !== 0 ?
