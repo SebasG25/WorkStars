@@ -210,10 +210,12 @@ const EmployePosts = (props) => {
                                             </Modal.Header>
                                             <Modal.Body>
                                                 <div className="row justify-content-center">
-                                                    <textarea className="inp px-4 pt-4" style={{
-                                                        height: "10em",
-                                                        width: "80%"
-                                                    }} onChange={onInputChange} type="text" minLength="1" rows="5" cols="40" maxLength="500" name="name" placeholder="Descripción del post" />
+                                                    <div className="d-flex align-items-center justify-content-center">
+                                                        <textarea className="mb-2 p-2" style={{
+                                                            height: "10em",
+                                                            width: "100%"
+                                                        }} type="text" onChange={onInputChange} minLength="1" rows="5" cols="40" maxLength="500" name="name" placeholder={post?.post} />
+                                                    </div>
                                                 </div>
                                             </Modal.Body>
                                             <Modal.Footer>

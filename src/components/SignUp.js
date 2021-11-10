@@ -15,7 +15,7 @@ const userData = {
 const RegEx = {
     name: /^[a-zA-ZÀ-ÿ\s]{1,30}$/,
     password: /^.{4,}$/,
-    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,}$/
 }
 
 export default function SignUp() {
@@ -38,11 +38,11 @@ export default function SignUp() {
                 showConfirmButton: false,
                 timer: 1000
             })
-        }else{
+        } else {
             MySwal.fire({
                 icon: 'error',
                 title: 'Debes completar los campos correctamente'
-            }) 
+            })
         }
     }
 
@@ -69,7 +69,7 @@ export default function SignUp() {
         <div>
             <section className="login py-5">
                 <div className="container">
-                    <div className="g-0 row row-signin mx-auto" style={{width: '80vw', height: '80vh'}}>
+                    <div className="g-0 row row-signin mx-auto" style={{ width: '80vw', height: '80vh' }}>
                         <div className="col-lg-5 col-md-5 col-sm-5">
                             <img
                                 className="img-fluid row-image" src="https://i.imgur.com/hriWgYh.jpg"
@@ -85,9 +85,24 @@ export default function SignUp() {
                             <h1 className="animate__animated animate__tada">Crea una cuenta</h1>
 
                             <form action="" className="py-5">
-                                <div className="form-row py-2">
+                                <div className="form-row py-1">
                                     <div className="offset-1 col-lg-10 d-flex flex-column align-items-center">
-                                        <input className="inp px-2" type="email" name="email" placeholder="nombre@ejemplo.com" required onChange={(e) => emailOnChangeHandler(e)} onKeyUp={validateForm} />
+                                        <div class="form-floating align-self-center col-lg-8">
+                                            <input
+                                                type="email"
+                                                class={`form-control ${validation?.email !== '' ?
+                                                    !(validation?.email) ?
+                                                        'is-invalid' :
+                                                        'is-valid'
+                                                    : ''
+                                                    }`}
+                                                id="floatingInput" name="email" placeholder="nombre@ejemplo.com"
+                                                onChange={(e) => emailOnChangeHandler(e)}
+                                                onKeyUp={validateForm}
+                                                required
+                                            />
+                                            <label for="floatingInput">Correo electrónico</label>
+                                        </div>
                                         {
                                             validation?.email !== "" ?
                                                 !(validation?.email) ?
@@ -109,9 +124,24 @@ export default function SignUp() {
                                         }
                                     </div>
                                 </div>
-                                <div className="form-row py-2">
+                                <div className="form-row py-1">
                                     <div className="offset-1 col-lg-10 d-flex flex-column align-items-center">
-                                        <input className="inp px-2" type="text" name="name" placeholder="Nombre del empleado" required onChange={(e) => nameOnChangeHandler(e)} onKeyUp={validateForm} />
+                                        <div class="form-floating align-self-center col-lg-8">
+                                            <input
+                                                type="text"
+                                                class={`form-control ${validation?.name !== '' ?
+                                                    !(validation?.name) ?
+                                                        'is-invalid' :
+                                                        'is-valid'
+                                                    : ''
+                                                    }`}
+                                                id="floatingInput" name="name" placeholder="Nombre completo"
+                                                onChange={(e) => nameOnChangeHandler(e)}
+                                                onKeyUp={validateForm}
+                                                required
+                                            />
+                                            <label for="floatingInput">Nombre completo</label>
+                                        </div>
                                         {
                                             validation?.name !== "" ?
                                                 !(validation?.name) ?
@@ -133,9 +163,24 @@ export default function SignUp() {
                                         }
                                     </div>
                                 </div>
-                                <div className="form-row py-2">
+                                <div className="form-row py-1">
                                     <div className="offset-1 col-lg-10 d-flex flex-column align-items-center">
-                                        <input className="inp px-2" type="password" name="password" placeholder="Contraseña" required onChange={(e) => passwordOnChangeHandler(e)} onKeyUp={validateForm} />
+                                    <div class="form-floating align-self-center col-lg-8">
+                                            <input
+                                                type="password"
+                                                class={`form-control ${validation?.password !== '' ?
+                                                        !(validation?.password) ?
+                                                            'is-invalid' :
+                                                            'is-valid'
+                                                        : ''
+                                                    }`}
+                                                id="floatingInput" name="password" placeholder="Contraseña"
+                                                onChange={(e) => passwordOnChangeHandler(e)}
+                                                onKeyUp={validateForm}
+                                                required
+                                            />
+                                            <label for="floatingInput">Contraseña</label>
+                                        </div>
                                         {
                                             validation?.password !== "" ?
                                                 !(validation?.password) ?

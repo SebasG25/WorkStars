@@ -93,14 +93,14 @@ const Account = () => {
             if (result.isDenied) {
                 try {
                     await axios.put(`http://localhost:3001/users/${user.id}`, userResponse)
-                    updateUser({description: userResponse.description})
+                    updateUser({ description: userResponse.description })
                     MySwal.fire({
                         icon: 'success',
                         title: 'Cambios realizados exitosamente!',
                         showConfirmButton: false,
                         timer: 1000
                     })
-                    
+
                 } catch (error) {
                     console.log(error)
                     MySwal.fire({
@@ -122,7 +122,7 @@ const Account = () => {
     }
 
     const onInputDescriptionChange = (e) => {
-        setUserResponse({...userResponse, description:e.target.value})
+        setUserResponse({ ...userResponse, description: e.target.value })
     }
 
     return (
@@ -169,16 +169,28 @@ const Account = () => {
                                     Editar descripción
                                 </Button>
                                 :
-                                <Button
-                                    className="confirm-changes"
-                                    variant="danger"
-                                    style={{
-                                        boxShadow: 'none'
-                                    }}
-                                    onClick={handleChangesConfirmed}
-                                >
-                                    Confirmar cambios
-                                </Button>
+                                <div className="d-flex justify-content-between">
+                                    <Button
+                                        className="confirm-changes flex-fill me-2"
+                                        variant="danger"
+                                        style={{
+                                            boxShadow: 'none'
+                                        }}
+                                        onClick={handleChangesConfirmed}
+                                    >
+                                        Confirmar cambios
+                                    </Button>
+                                    <Button
+                                        className="cancel-changes flex-fill"
+                                        variant="secondary"
+                                        style={{
+                                            boxShadow: 'none'
+                                        }}
+                                        onClick={() => setIsEditing(false)}
+                                    >
+                                        Cancelar
+                                    </Button>
+                                </div>
                         }
 
                     </Card>

@@ -1,4 +1,4 @@
-.editing-account {
+.confirm-changes, .cancel-changes, .editing-account {
     transition: all 0.3s ease;
 }
 
@@ -6,10 +6,10 @@
     background: #da983c;
 }
 
-.confirm-changes {
-    transition: all 0.3s ease;
+.confirm-changes:hover {
+    background-color: #be211c;
 }
 
-.confirm-changes:hover {
-    background-color: #da2822;
+.cancel-changes:hover {
+    background-color: #646060;
 }

@@ -20,7 +20,7 @@ export default function Signin() {
         <div>
             <section className="login py-5">
                 <div className="container">
-                    <div className="g-0 row row-signin" style={{width: '80vw', height: '70vh'}}>
+                    <div className="g-0 row row-signin" style={{ width: '80vw', height: '70vh' }}>
                         <div className="col-lg-5 col-md-5 col-sm-5">
                             <img
                                 className="img-fluid row-image" src="https://i.imgur.com/hriWgYh.jpg"
@@ -37,14 +37,15 @@ export default function Signin() {
 
                             <form action="" className="py-5">
                                 <div className="form-row py-2">
-                                    <div className="offset-1 col-lg-10">
-                                        <input className="inp px-2" type="email" placeholder="nombre@ejemplo.com" name="email" onChange={(e) => emailOnChangeHandler(e)} required />
-
+                                    <div class="form-floating mb-3 offset-2 col-lg-8">
+                                        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="nombre@ejemplo.com" onChange={(e) => emailOnChangeHandler(e)} required />
+                                        <label for="floatingInput">Correo electrónico</label>
                                     </div>
                                 </div>
                                 <div className="form-row py-2">
-                                    <div className="offset-1 col-lg-10">
-                                        <input className="inp px-2" type="password" placeholder="Contraseña" name="password" onChange={(e) => passwordOnChangeHandler(e)} required />
+                                    <div class="form-floating mb-3 offset-2 col-lg-8">
+                                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Contraseña" onChange={(e) => passwordOnChangeHandler(e)} required />
+                                        <label for="floatingInput">Contraseña</label>
                                     </div>
                                 </div>
                                 <div className="form-row pt-4">
