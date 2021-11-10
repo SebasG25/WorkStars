@@ -78,7 +78,7 @@ export default function CreateProject(props) {
                             />
                         </div>
                         <div className="col-lg-7 col-md-7 col-sm-7 text-center py-5">
-                            <h1 className="animate__animated animate__tada">Create a Project</h1>
+                            <h1 className="animate__animated animate__tada">Crea un Proyecto</h1>
 
                             <form action="" className="py-5">
                                 <div className="form-row py-2">
@@ -90,20 +90,20 @@ export default function CreateProject(props) {
                                     <div className="offset-1 col-lg-10 input-group-lg">
 
                                         <select className="inp px-2" id="inputGroupSelect01" onChange={(e) => onSelectChangeHandler(e)}>
-                                            <option hidden selected>Choose a collaborator</option>
+                                            <option hidden selected>Escoge un colaborador</option>
                                             {
                                                 inactives.map(user => <option key={user.id} value={JSON.stringify(user)}> {user.name}</option>)
                                             }
                                         </select>
                                         <div class="col-auto my-2">
-                                            <button class="btn btn-primary mb-3" onClick={(e) => addCollaboratorHandler(e)}>Add collaborator</button>
+                                            <button class="btn btn-primary mb-3" onClick={(e) => addCollaboratorHandler(e)}>Agregar colaborador</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="form-row pt-4">
                                     <div className="offset-1 col-lg-10 py-1">
-                                        <button className="btn1" onClick={(e) => createProject(e)}>Create Project</button>
+                                        <button className="btn1" onClick={(e) => createProject(e)}>Crear Proyecto</button>
                                     </div>
                                 </div>
                             </form>

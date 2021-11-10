@@ -49,15 +49,6 @@
       "role": "regular",
       "description": "",
       "image": "https://i.imgur.com/B8iomlC.png",
-      "email": "prueba2",
-      "name": "prueba2",
-      "password": "123",
-      "id": 6
-    },
-    {
-      "role": "regular",
-      "description": "",
-      "image": "https://i.imgur.com/B8iomlC.png",
       "email": "juandiortiz@gmail.com",
       "name": "Juan Diego",
       "password": "juandiego",
@@ -93,6 +84,15 @@
           "password": "123",
           "id": 3,
           "image": "https://i.imgur.com/LWv2ZWo.png"
+        },
+        {
+          "email": "danieldiosa95@hotmail.com",
+          "role": "regular",
+          "description": "",
+          "name": "Daniel",
+          "password": "123",
+          "id": 4,
+          "image": "https://i.imgur.com/B8iomlC.png"
         }
       ],
       "name": "Proyecto 1",

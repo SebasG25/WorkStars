@@ -82,16 +82,16 @@ export default function AdminProjects(props) {
             <MaterialTable
                 localization={{
                     toolbar: {
-                  addRemoveColumns: 'Agregar o eliminar columnas',
-                  exportAriaLabel: 'Exportar',
-                  exportName: 'Exportar a CSV',
-                  exportTitle: 'Exportar',
-                  nRowsSelected: '{0} filas seleccionadas',
-                  searchPlaceholder: 'Buscar',
-                  searchTooltip: 'Buscar',
-                  showColumnsAriaLabel: 'Mostrar columnas',
-                  showColumnsTitle: 'Mostrar columnas',
-                }
+                        addRemoveColumns: 'Agregar o eliminar columnas',
+                        exportAriaLabel: 'Exportar',
+                        exportName: 'Exportar a CSV',
+                        exportTitle: 'Exportar',
+                        nRowsSelected: '{0} filas seleccionadas',
+                        searchPlaceholder: 'Buscar',
+                        searchTooltip: 'Buscar',
+                        showColumnsAriaLabel: 'Mostrar columnas',
+                        showColumnsTitle: 'Mostrar columnas',
+                    }
                 }}
                 title='Proyectos'
                 columns={columns}
@@ -123,9 +123,9 @@ export default function AdminProjects(props) {
                         tooltip: 'Eliminar Proyecto',
                         onClick: async (event, rowData) => {
                             MySwal.fire({
-                                title: `${rowData.collaborators.length !== 0 ? 
-                                `¿Estás seguro de que quieres eliminar el proyecto ${rowData.name} con ${rowData.collaborators.length} colaboradores?` 
-                                : `¿Estás seguro de que quieres eliminar el proyecto ${rowData.name}` }`,
+                                title: `${rowData.collaborators.length !== 0 ?
+                                    `¿Estás seguro de que quieres eliminar el proyecto ${rowData.name} con ${rowData.collaborators.length} colaboradores?`
+                                    : `¿Estás seguro de que quieres eliminar el proyecto ${rowData.name}`}`,
                                 icon: 'warning',
                                 showDenyButton: true,
                                 showCancelButton: true,
@@ -188,8 +188,9 @@ export default function AdminProjects(props) {
                     <Modal.Title>Edita el nombre de tu proyecto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="row justify-content-center">
-                        <input className="inp px-2" type="text" name="name" placeholder="Project Name" value={projectData?.name} onChange={onInputChange} />
+                    <div class="form-floating mb-3 offset-2 col-lg-8">
+                        <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Nombre del proyecto" value={projectData?.name} onChange={onInputChange} />
+                        <label for="floatingInput">Nombre del proyecto</label>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

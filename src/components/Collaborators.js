@@ -107,23 +107,26 @@ class Collaborators extends Component {
               </Modal.Header>
               <Modal.Body>
                 <div className="row justify-content-center">
-                  <select
-                    name="userSelected"
-                    value={this.state.userSelected}
-                    onChange={this.onInputChange}
-                    className="col-auto text-center inp justify-content-center"
-                    id="inputGroupSelect01"
-                  >
-                    <option hidden selected>
-                      Escoge un colaborador
-                    </option>
-                    {this.state.inactives.map((user) => (
-                      <option key={user.id} value={JSON.stringify(user)}>
-                        {" "}
-                        {user.name}
+                  <div class="form-floating">
+                    <select
+                      class="col-auto text-center justify-content-center form-select"
+                      id="floatingSelect"
+                      aria-label="Floating label select example"
+                      name="userSelected"
+                      value={this.state.userSelected}
+                      onChange={this.onInputChange}>
+                      <option hidden selected>
+                        Escoge un colaborador
                       </option>
-                    ))}
-                  </select>
+                      {this.state.inactives.map((user) => (
+                        <option key={user.id} value={JSON.stringify(user)}>
+                          {" "}
+                          {user.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label for="floatingSelect">Lista de colaboradores</label>
+                  </div>
                 </div>
               </Modal.Body>
               <Modal.Footer>
