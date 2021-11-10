@@ -45,10 +45,11 @@ const EmployePosts = (props) => {
                 await axios.post(`http://localhost:3001/posts`, postDescription)
                 MySwal.fire({
                     icon: 'success',
-                    title: 'Post editado correctamente!',
+                    title: 'Post creado correctamente!',
                     showConfirmButton: false,
                     timer: 1000
                 })
+                setPostDescription({...postDescription, post: ""})
                 getPosts()
             } catch (error) {
                 MySwal.fire({
@@ -65,7 +66,6 @@ const EmployePosts = (props) => {
                 text: 'Parece que no escribiste nada'
             })
         }
-
     }
 
     const deletePost = async (post) => {
@@ -91,8 +91,6 @@ const EmployePosts = (props) => {
                     getPosts();
                 }
             })
-
-
         } catch (error) {
             MySwal.fire({
                 icon: 'error',
@@ -209,6 +207,7 @@ const EmployePosts = (props) => {
                                                     minLength="1"
                                                     rows="5"
                                                     cols="40"
+                                                    value={postDescription.post}
                                                     maxLength="500"
                                                     name="post"
                                                     placeholder={`¡Elogia a ${userReceiver?.name}!`}

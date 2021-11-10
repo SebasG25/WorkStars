@@ -106,6 +106,17 @@ export default function AdminProjects(props) {
                 localization={{
                     header: {
                         actions: 'Acciones'
+                    },
+                    toolbar: {
+                        addRemoveColumns: 'Agregar o eliminar columnas',
+                        exportAriaLabel: 'Exportar',
+                        exportName: 'Exportar a CSV',
+                        exportTitle: 'Exportar',
+                        nRowsSelected: '{0} filas seleccionadas',
+                        searchPlaceholder: 'Buscar',
+                        searchTooltip: 'Buscar',
+                        showColumnsAriaLabel: 'Mostrar columnas',
+                        showColumnsTitle: 'Mostrar columnas',
                     }
                 }}
             >

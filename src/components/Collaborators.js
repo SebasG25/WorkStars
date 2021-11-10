@@ -98,12 +98,12 @@ class Collaborators extends Component {
             </div>
             <div className="col-auto">
               <button className="btn btn-primary" onClick={this.handleClose}>
-                Add collaborator
+                Agregar colaborador
               </button>
             </div>
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Add a new collaborator!</Modal.Title>
+                <Modal.Title>Agrega a un nuevo colaborador!</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div className="row justify-content-center">
@@ -115,7 +115,7 @@ class Collaborators extends Component {
                     id="inputGroupSelect01"
                   >
                     <option hidden selected>
-                      Choose a collaborator
+                      Escoge un colaborador
                     </option>
                     {this.state.inactives.map((user) => (
                       <option key={user.id} value={JSON.stringify(user)}>
@@ -128,10 +128,10 @@ class Collaborators extends Component {
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
-                  Close
+                  Cerrar
                 </Button>
                 <Button variant="primary" onClick={this.addCollaborator}>
-                  Add
+                  Agregar
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -154,7 +154,7 @@ class Collaborators extends Component {
                       <h5 className="card-title">{user.name}</h5>
                     </div>
                     <div className="d-flex flex-nowrap">
-                      <button className="btn btn-danger ms-2" onClick={() => this.deleteCollaborator(user.id)}>Delete</button>
+                      <button className="btn btn-danger ms-2" onClick={() => this.deleteCollaborator(user.id)}>Eliminar</button>
                     </div>
                   </div>
                 </div>

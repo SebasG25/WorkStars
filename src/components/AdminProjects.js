@@ -80,6 +80,19 @@ export default function AdminProjects(props) {
     return (
         <div className="container">
             <MaterialTable
+                localization={{
+                    toolbar: {
+                  addRemoveColumns: 'Agregar o eliminar columnas',
+                  exportAriaLabel: 'Exportar',
+                  exportName: 'Exportar a CSV',
+                  exportTitle: 'Exportar',
+                  nRowsSelected: '{0} filas seleccionadas',
+                  searchPlaceholder: 'Buscar',
+                  searchTooltip: 'Buscar',
+                  showColumnsAriaLabel: 'Mostrar columnas',
+                  showColumnsTitle: 'Mostrar columnas',
+                }
+                }}
                 title='Proyectos'
                 columns={columns}
                 data={data}
@@ -110,7 +123,9 @@ export default function AdminProjects(props) {
                         tooltip: 'Eliminar Proyecto',
                         onClick: async (event, rowData) => {
                             MySwal.fire({
-                                title: `¿Estás seguro de que quieres eliminar el proyecto: ${rowData.name}?`,
+                                title: `${rowData.collaborators.length !== 0 ? 
+                                `¿Estás seguro de que quieres eliminar el proyecto ${rowData.name} con ${rowData.collaborators.length} colaboradores?` 
+                                : `¿Estás seguro de que quieres eliminar el proyecto ${rowData.name}` }`,
                                 icon: 'warning',
                                 showDenyButton: true,
                                 showCancelButton: true,

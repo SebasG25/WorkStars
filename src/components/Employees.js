@@ -37,6 +37,7 @@ const Employees = (props) => {
 
     return (
         <div className="row">
+            <h1>Empleados</h1>
             {usersData.map((user) => (
                 <div className="col-md-4 p-2" key={user.id}>
                     <div className="card shadow-sm">
@@ -47,8 +48,8 @@ const Employees = (props) => {
                                 src={user.image}
                                 alt="user"
                                 style={{
-                                    height:'50px',
-                                    width:'50px',
+                                    height: '50px',
+                                    width: '50px',
                                     borderRadius: '50%',
                                     objectFit: 'cover',
                                 }}

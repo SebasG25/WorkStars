@@ -67,7 +67,7 @@ export default function SignUp() {
 
     return (
         <div>
-            <section className="login py-5">
+            <section className="login py-3">
                 <div className="container">
                     <div className="g-0 row row-signin mx-auto" style={{ width: '80vw', height: '80vh' }}>
                         <div className="col-lg-5 col-md-5 col-sm-5">
