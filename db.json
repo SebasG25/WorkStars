@@ -12,7 +12,7 @@
     {
       "email": "federico29.mg@gmail.com",
       "role": "regular",
-      "description": "Hola, soy federico",
+      "description": "Hola, soy Federico.",
       "name": "Federico",
       "password": "123",
       "id": 2,
@@ -165,36 +165,6 @@
   "posts": [
     {
       "id": 1,
-      "idProject": {
-        "collaborators": [
-          {
-            "email": "1",
-            "role": "admin",
-            "name": "Sebastian",
-            "password": "1",
-            "id": 1,
-            "image": "https://i.imgur.com/B8iomlC.png"
-          },
-          {
-            "email": "federico29.mg@gmail.com",
-            "role": "regular",
-            "name": "Federico",
-            "password": "123",
-            "id": 2,
-            "image": "https://i.imgur.com/B8iomlC.png"
-          },
-          {
-            "email": "chzdiane@gmail.com",
-            "role": "regular",
-            "name": "Dianella",
-            "password": "123",
-            "id": 3,
-            "image": "https://i.imgur.com/LWv2ZWo.png"
-          }
-        ],
-        "name": "project 1",
-        "id": 1
-      },
       "author": {
         "email": "chzdiane@gmail.com",
         "role": "regular",
@@ -215,36 +185,6 @@
     },
     {
       "id": 2,
-      "idProject": {
-        "collaborators": [
-          {
-            "email": "1",
-            "role": "admin",
-            "name": "Sebastian",
-            "password": "1",
-            "id": 1,
-            "image": "https://i.imgur.com/B8iomlC.png"
-          },
-          {
-            "email": "federico29.mg@gmail.com",
-            "role": "regular",
-            "name": "Federico",
-            "password": "123",
-            "id": 2,
-            "image": "https://i.imgur.com/B8iomlC.png"
-          },
-          {
-            "email": "chzdiane@gmail.com",
-            "role": "regular",
-            "name": "Dianella",
-            "password": "123",
-            "id": 3,
-            "image": "https://i.imgur.com/LWv2ZWo.png"
-          }
-        ],
-        "name": "project 1",
-        "id": 1
-      },
       "author": {
         "email": "1",
         "role": "admin",
@@ -261,7 +201,7 @@
         "id": 2,
         "image": "https://i.imgur.com/B8iomlC.png"
       },
-      "post": "Buen trabajo\n"
+      "post": "¡Buen trabajo, Federico!"
     }
   ]
 }

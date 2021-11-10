@@ -39,7 +39,7 @@ const Employees = (props) => {
         <div className="row">
             {usersData.map((user) => (
                 <div className="col-md-4 p-2" key={user.id}>
-                    <div className="card">
+                    <div className="card shadow-sm">
                         <div className="card-body d-flex justify-content-between">
                             <img
                                 width="50"
