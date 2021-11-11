@@ -121,7 +121,7 @@ const EmployePosts = (props) => {
             })
         } else {
             try {
-                await axios.put(`http://localhost:3001/posts/${post.id}`, {...specifiedPost, post: description})
+                await axios.put(`http://localhost:3001/posts/${post.id}`, { ...specifiedPost, post: description })
                 MySwal.fire({
                     icon: 'success',
                     title: 'Post editado correctamente!',
@@ -328,14 +328,15 @@ const EmployePosts = (props) => {
                                             </div>
                                         ))
                                         :
-                                        <h3
-                                            className="text-center pt-3"
-                                            style={{
-                                                color: 'rgb(220,220,220)'
-                                            }}
-                                        >
-                                            {userReceiver?.name} aún no tiene posts
-                                        </h3>
+                                        <div className="d-flex align-items-center justify-content-center" style={{height:'100%'}}>
+                                            <h3
+                                                style={{
+                                                    color: 'rgb(220,220,220)'
+                                                }}
+                                            >
+                                                {userReceiver?.name} aún no tiene posts
+                                            </h3>
+                                        </div>
                                 }
                             </div>
                         </div>
