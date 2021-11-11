@@ -56,25 +56,33 @@ export default function AdminProjects(props) {
     }
 
     const editProject = async () => {
-        try {
-            delete projectData.tableData
-            await axios.put(`http://localhost:3001/projects/${projectData.id}`, projectData)
-            MySwal.fire({
-                icon: 'success',
-                title: 'Proyecto editado correctamente!',
-                showConfirmButton: false,
-                timer: 1000
-            })
-            getData();
-        } catch (error) {
+        if (projectData.name !== "") {
+            try {
+                delete projectData.tableData
+                await axios.put(`http://localhost:3001/projects/${projectData.id}`, projectData)
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Proyecto editado correctamente!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                getData();
+            } catch (error) {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal!',
+                    footer: `<p>${error.name}: ${error.message}</p>`
+                })
+            }
+            handleClose();
+        } else {
             MySwal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Algo salió mal!',
-                footer: `<p>${error.name}: ${error.message}</p>`
+                text: 'Parece que no escribiste nada'
             })
         }
-        handleClose();
     };
 
     return (

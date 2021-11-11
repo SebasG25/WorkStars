@@ -11,13 +11,21 @@ const MySwal = withReactContent(Swal)
 const Account = () => {
     const { user, updateUser } = useAuth()
     const [userResponse, setUserResponse] = useState({})
+    const [postsResponse, updatePostsResponse] = useState([])
     const [show, setShow] = useState(false)
     const [selectedFile, setSelectedFile] = useState(null)
     const [isEditing, setIsEditing] = useState(false)
+    const [projectData, setProjectData] = useState([])
 
     useEffect(() => {
-        getUser();
+        fetchData();
     }, [])
+
+    const fetchData = async () => {
+        await getUser();
+        await getPostsByUser();
+        await getProjectsByUser();
+    }
 
     const handleClose = () => {
         setShow(!show)
@@ -65,6 +73,14 @@ const Account = () => {
         }
         try {
             await axios.put(`http://localhost:3001/users/${user.id}`, userResponse)
+            await editUserByPosts();
+            await editProjectsByUser();
+            MySwal.fire({
+                icon: 'success',
+                title: 'Cambios realizados exitosamente!',
+                showConfirmButton: false,
+                timer: 800
+            })
         } catch (error) {
             return MySwal.fire({
                 icon: 'error',
@@ -100,9 +116,7 @@ const Account = () => {
                         showConfirmButton: false,
                         timer: 1000
                     })
-
                 } catch (error) {
-                    console.log(error)
                     MySwal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -116,9 +130,46 @@ const Account = () => {
         })
     }
 
+
     const getUser = async () => {
         const response = await axios.get(`http://localhost:3001/users/${user?.id}`)
         setUserResponse(response.data)
+    }
+
+    const getPostsByUser = async () => {
+        const response = await axios.get(`http://localhost:3001/posts?author.id=${user.id}`)
+        updatePostsResponse(response.data)
+    }
+
+    const getProjectsByUser = async () => {
+        const response = await axios.get(`http://localhost:3001/projects`)
+        setProjectData(response.data)
+    }
+
+    const editUserByPosts = async () => {
+        for (let i = 0; i < postsResponse.length; i++) {
+            let putPost = { ...postsResponse[i], author: userResponse }
+            await axios.put(`http://localhost:3001/posts/${postsResponse[i].id}`, putPost)
+        }
+    }
+
+    const editProjectsByUser = async () => {
+        for (let i = 0; i < projectData.length; i++) {
+            let putProject = { ...projectData[i] }
+            let indexByUser = putProject.collaborators.findIndex((element) => element.id === user.id);
+
+            if (indexByUser !== -1) {
+                console.log(indexByUser)
+                putProject.collaborators[indexByUser] = { ...userResponse }
+                await axios.put(`http://localhost:3001/projects/${projectData[i].id}`, putProject)
+            }
+            console.log(putProject)
+            /*console.log(
+                putProject.collaborators[
+                    putProject.collaborators.findIndex((element) => element.id === user.id)
+                ]
+            );*/
+        }
     }
 
     const onInputDescriptionChange = (e) => {

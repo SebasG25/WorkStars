@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 class Collaborators extends Component {
   constructor(props) {
@@ -54,16 +58,39 @@ class Collaborators extends Component {
   };
 
   addCollaborator = async () => {
-    await this.setState(prevState => ({
-      collaboratorsData: [...this.state.collaboratorsData, JSON.parse(this.state.userSelected)],
-      projectInfo: {
-        ...prevState.projectInfo,
-        collaborators: [...this.state.collaboratorsData, JSON.parse(this.state.userSelected)]
+    if (!(this.state.userSelected === "")) {
+      try {
+        await this.setState(prevState => ({
+          collaboratorsData: [...this.state.collaboratorsData, JSON.parse(this.state.userSelected)],
+          projectInfo: {
+            ...prevState.projectInfo,
+            collaborators: [...this.state.collaboratorsData, JSON.parse(this.state.userSelected)]
+          }
+        }))
+        await axios.put(`http://localhost:3001/projects/${this.props.match.params.id}`, this.state.projectInfo)
+        MySwal.fire({
+          icon: 'success',
+          title: 'Colaborador agregado correctamente!',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        this.getNoCollaborators();
+        this.handleClose();
+      } catch (error) {
+        MySwal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo salió mal!',
+          footer: `<p>${error.name}: ${error.message}</p>`
+        })
       }
-    }))
-    await axios.put(`http://localhost:3001/projects/${this.props.match.params.id}`, this.state.projectInfo)
-    this.getNoCollaborators();
-    this.handleClose();
+    } else {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debes escoger a un usuario primero'
+      })
+    }
   };
 
   onInputChange = (e) => {
@@ -72,19 +99,44 @@ class Collaborators extends Component {
   }
 
   deleteCollaborator = async (id) => {
-    await this.setState(prevState => ({
-      collaboratorsData: prevState.collaboratorsData.filter(user => user.id !== id),
-      projectInfo: {
-        ...prevState.projectInfo,
-        collaborators: prevState.collaboratorsData.filter(user => user.id !== id)
+
+    MySwal.fire({
+      title: `¿Estás seguro de que quieres eliminar este usuario?`,
+      icon: 'warning',
+      showDenyButton: true,
+      showCancelButton: true,
+      showConfirmButton: false,
+      cancelButtonText: `Cancelar`,
+      denyButtonText: `Eliminar`,
+    }).then(async (result) => {
+      if (result.isDenied) {
+        try {
+          await this.setState(prevState => ({
+            collaboratorsData: prevState.collaboratorsData.filter(user => user.id !== id),
+            projectInfo: {
+              ...prevState.projectInfo,
+              collaborators: prevState.collaboratorsData.filter(user => user.id !== id)
+            }
+          }))
+
+          await axios.put(`http://localhost:3001/projects/${this.props.match.params.id}`, this.state.projectInfo)
+          MySwal.fire({
+            icon: 'success',
+            title: 'Colaborador eliminado correctamente!',
+            showConfirmButton: false,
+            timer: 1000
+          })
+          this.getNoCollaborators();
+        } catch (error) {
+          MySwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+            footer: `<p>${error.name}: ${error.message}</p>`
+          })
+        }
       }
-    }))
-
-    await axios.put(`http://localhost:3001/projects/${this.props.match.params.id}`, this.state.projectInfo)
-
-    this.getNoCollaborators();
-    console.log(this.state.projectInfo)
-    console.log(this.state.collaboratorsData)
+    })
 
   }
 
@@ -150,7 +202,10 @@ class Collaborators extends Component {
                       src={user.image}
                       alt="user"
                       style={{
-                        objectFit: 'cover'
+                        height: '50px',
+                        width: '50px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
                       }}
                     ></img>
                     <div className="mt-2 align-self-center">

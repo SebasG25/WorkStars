@@ -1,19 +1,17 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import '../styles/SignIn.css'
 import useAuth from '../auth/useAuth'
 
-
-const userCredentials = {};
-
 export default function Signin() {
     const { login } = useAuth()
+    const [userCredentials, setUserCredentials] = useState({email: "", password: ""})
 
     const emailOnChangeHandler = (e) => {
-        userCredentials[e.target.name] = e.target.value
+        setUserCredentials({...userCredentials, [e.target.name]: e.target.value})
     }
 
     const passwordOnChangeHandler = (e) => {
-        userCredentials[e.target.name] = e.target.value
+        setUserCredentials({...userCredentials, [e.target.name]: e.target.value})
     }
 
     return (

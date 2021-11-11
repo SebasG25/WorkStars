@@ -13,10 +13,12 @@ const EmployePosts = (props) => {
     const [userSession, setUserSession] = useState({ ...user })
     const [userReceiver, setUserReceiver] = useState(null)
     const [posts, setPosts] = useState([])
+    const [specifiedPost, setSpecifiedPost] = useState({})
     const [show, setShow] = useState(false)
     const [description, setDescription] = useState(``)
-    const [postDescription, setPostDescription] = useState({post: ""})
-    const [isSharingProject, setIsSharingProject] = useState(true)
+    const [postDescription, setPostDescription] = useState({ post: "" })
+    const [isSharingProject, setIsSharingProject] = useState(false)
+    const [allProjects, setAllProjects] = useState([])
 
     useEffect(() => {
         fetchData()
@@ -28,10 +30,18 @@ const EmployePosts = (props) => {
     }
 
     const fetchUsersData = async () => {
+        const res = await axios.get('http://localhost:3001/projects')
         const resUserReceiver = await axios.get(`http://localhost:3001/users?id=${props.match.params.id}`)
         await setUserSession(user);
         await setPostDescription({ author: { ...user }, receiver: { ...resUserReceiver?.data[0] }, ...postDescription })
         await setUserReceiver(resUserReceiver?.data[0])
+        //Verificar si comparten al menos un proyecto
+        for (let i = 0; i < res.data.length; i++) {
+            if (res.data[i].collaborators.some(authorUser => authorUser.id === user?.id) && res.data[i].collaborators.some(receiverUser => receiverUser.id === resUserReceiver?.data[0]?.id)) {
+                setIsSharingProject(true);
+                return;
+            }
+        }
     }
 
     const getPosts = async () => {
@@ -49,7 +59,7 @@ const EmployePosts = (props) => {
                     showConfirmButton: false,
                     timer: 1000
                 })
-                setPostDescription({...postDescription, post: ""})
+                setPostDescription({ ...postDescription, post: "" })
                 getPosts()
             } catch (error) {
                 MySwal.fire({
@@ -81,6 +91,7 @@ const EmployePosts = (props) => {
             }).then(async (result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isDenied) {
+                    console.log(post.id)
                     await axios.delete(`http://localhost:3001/posts/${post.id}`)
                     MySwal.fire({
                         icon: 'success',
@@ -110,8 +121,7 @@ const EmployePosts = (props) => {
             })
         } else {
             try {
-                posts[post.id - 1].post = description
-                await axios.put(`http://localhost:3001/posts/${post.id}`, post)
+                await axios.put(`http://localhost:3001/posts/${post.id}`, {...specifiedPost, post: description})
                 MySwal.fire({
                     icon: 'success',
                     title: 'Post editado correctamente!',
@@ -140,20 +150,16 @@ const EmployePosts = (props) => {
         setPostDescription({ ...postDescription, [e.target.name]: e.target.value })
     }
 
+    const startEdit = async (post) => {
+        console.log(post.id)
+        setShow(true)
+        const resSpecifiedPost = await axios.get(`http://localhost:3001/posts/${post.id}`)
+        setSpecifiedPost(resSpecifiedPost.data)
+    }
+
     const handleClose = () => {
         setShow(!show);
     };
-
-    /*let button;
-    if (userSession.id !== parseInt(props.match.params.id)) {
-        button =
-            <button
-                className="btn btn-primary align-self-center justify-content-end ms-auto"
-                onClick={handleGiveAPost}
-            >
-                Dar una estrella
-            </button>
-    }*/
 
     return (
         <div>
@@ -195,31 +201,41 @@ const EmployePosts = (props) => {
                                         }
                                     </div>
                                     {
-                                        isSharingProject ?
-                                            <div className="textarea-container">
-                                                <textarea
-                                                    className="mb-2 p-2"
+                                        (isSharingProject) ?
+                                            !(userReceiver?.id === user?.id) ?
+                                                <div className="textarea-container">
+                                                    <textarea
+                                                        className="mb-2 p-2"
+                                                        style={{
+                                                            height: "10em",
+                                                            width: "90%"
+                                                        }}
+                                                        type="text"
+                                                        minLength="1"
+                                                        rows="5"
+                                                        cols="40"
+                                                        value={postDescription.post}
+                                                        maxLength="500"
+                                                        name="post"
+                                                        placeholder={`¡Elogia a ${userReceiver?.name}!`}
+                                                        onChange={handlePostDescriptionChange}
+                                                    />
+                                                    <button
+                                                        className="btn btn-primary"
+                                                        onClick={createPost}
+                                                    >
+                                                        Postear
+                                                    </button>
+                                                </div>
+                                                :
+                                                <h3
+                                                    className="text-center pt-3"
                                                     style={{
-                                                        height: "10em",
-                                                        width: "90%"
+                                                        color: 'rgb(220,220,220)'
                                                     }}
-                                                    type="text"
-                                                    minLength="1"
-                                                    rows="5"
-                                                    cols="40"
-                                                    value={postDescription.post}
-                                                    maxLength="500"
-                                                    name="post"
-                                                    placeholder={`¡Elogia a ${userReceiver?.name}!`}
-                                                    onChange={handlePostDescriptionChange}
-                                                />
-                                                <button
-                                                    className="btn btn-primary"
-                                                    onClick={createPost}
                                                 >
-                                                    Postear
-                                                </button>
-                                            </div>
+                                                    Lamentablemente no puedes elogiarte a ti mismo
+                                                </h3>
                                             :
                                             <h3
                                                 className="text-center pt-3"
@@ -265,7 +281,7 @@ const EmployePosts = (props) => {
                                                                 {
                                                                     post?.author?.id === userSession.id &&
                                                                     <div>
-                                                                        <button className="btn btn-outline-primary me-2" onClick={() => setShow(true)}>Editar post</button>
+                                                                        <button className="btn btn-outline-primary me-2" onClick={() => startEdit(post)}>Editar post</button>
                                                                         <button className="btn btn-outline-danger" onClick={() => deletePost(post)}>Eliminar post</button>
                                                                     </div>
                                                                 }
@@ -296,12 +312,12 @@ const EmployePosts = (props) => {
                                                                     cols="40"
                                                                     maxLength="500"
                                                                     name="name"
-                                                                    placeholder={post?.post} />
+                                                                    placeholder={specifiedPost?.post} />
                                                             </div>
                                                         </div>
                                                     </Modal.Body>
                                                     <Modal.Footer>
-                                                        <Button variant="primary" onClick={() => editPost(post)}>
+                                                        <Button variant="primary" onClick={() => editPost(specifiedPost)}>
                                                             Editar
                                                         </Button>
                                                         <Button variant="secondary" onClick={handleClose}>
