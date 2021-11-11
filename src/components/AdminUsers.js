@@ -52,17 +52,6 @@ export default function AdminProjects(props) {
                         onClick: (event) => props.history.push(`/signup`),
                     },
                     {
-                        icon: 'edit',
-                        tooltip: 'Editar Usuario',
-                        onClick: (event, rowData) => MySwal.fire({
-                            icon: 'success',
-                            title: 'Has presionado editar al usuario: ' + rowData.name,
-                            showConfirmButton: false,
-                            timer: 1000
-                        }),
-                        iconProps: { color: "primary" }
-                    },
-                    {
                         icon: 'delete',
                         tooltip: 'Eliminar Usuario',
                         onClick: async (event, rowData) => {

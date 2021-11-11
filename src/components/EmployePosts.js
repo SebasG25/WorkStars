@@ -95,7 +95,7 @@ const EmployePosts = (props) => {
                     await axios.delete(`http://localhost:3001/posts/${post.id}`)
                     MySwal.fire({
                         icon: 'success',
-                        title: 'Proyecto eliminado!',
+                        title: 'Post eliminado correctamente!',
                         showConfirmButton: false,
                         timer: 1000
                     })

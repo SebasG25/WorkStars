@@ -76,6 +76,7 @@ class Collaborators extends Component {
         })
         this.getNoCollaborators();
         this.handleClose();
+        this.setState({userSelected: ""})
       } catch (error) {
         MySwal.fire({
           icon: 'error',
